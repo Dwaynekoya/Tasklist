@@ -1,12 +1,15 @@
 package model;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
     private String name;
     private String details;
     private int priority;
     private int repeatEveryX;
     private String type;
     private boolean habit;
+    private boolean done;
 
     public Task(String name, String details, int priority, int repeatEveryX, String type, boolean habit) {
         this.name = name;
@@ -15,6 +18,16 @@ public class Task {
         this.repeatEveryX = repeatEveryX;
         this.type = type;
         this.habit = habit;
+        //por defecto una tarea  nueva no ha sido realizada:
+        this.done=false;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     public String getName() {

@@ -1,17 +1,22 @@
 package view;
 
+import model.Task;
+
 import javax.swing.*;
 import java.awt.event.*;
 
-public class CreateNewHabitGUI extends JDialog {
+public class CreateNewTaskGUI extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField textField1;
-    private JTextArea textArea1;
-    private JSlider slider1;
+    private JTextField textFieldName;
+    private JTextArea textAreaDetails;
+    private JSlider sliderPriority;
+    private JSpinner spinnerRepeat;
+    private JComboBox comboBoxType;
+    private JButton btnHabit;
 
-    public CreateNewHabitGUI() {
+    public CreateNewTaskGUI() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -46,7 +51,20 @@ public class CreateNewHabitGUI extends JDialog {
 
     private void onOK() {
         // add your code here
+        Task newTask = receiveInput();
         dispose();
+    }
+
+    private Task receiveInput() {
+        Task newTask = null;
+        String name = this.textFieldName.getText();
+        String details = this.textAreaDetails.getText();
+        int priority = this.sliderPriority.getValue();
+        String type = (String) this.comboBoxType.getSelectedItem();
+        boolean habit = this.btnHabit.isSelected();
+        int repeat = (int) this.spinnerRepeat.getValue();
+        newTask=new Task(name,details,priority,repeat,type,habit);
+        return newTask;
     }
 
     private void onCancel() {
@@ -55,7 +73,7 @@ public class CreateNewHabitGUI extends JDialog {
     }
 
     public static void main(String[] args) {
-        CreateNewHabitGUI dialog = new CreateNewHabitGUI();
+        CreateNewTaskGUI dialog = new CreateNewTaskGUI();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
