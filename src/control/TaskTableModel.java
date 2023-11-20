@@ -3,8 +3,6 @@ package control;
 import model.Task;
 
 import javax.swing.table.AbstractTableModel;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class TaskTableModel extends AbstractTableModel {
@@ -13,12 +11,12 @@ public class TaskTableModel extends AbstractTableModel {
 
     public TaskTableModel() {
         this.tasklist=new ArrayList<>();
-        columnas=Constants.defaulltColumns;
+        columnas=Constants.DEFAULLT_COLUMNS;
     }
 
     public TaskTableModel(ArrayList<Task> Tasks) {
         this.tasklist = Tasks;
-        columnas=Constants.defaulltColumns;
+        columnas=Constants.DEFAULLT_COLUMNS;
     }
     //devuelve boolean según si se añadió o no
     public boolean add(Task Task){

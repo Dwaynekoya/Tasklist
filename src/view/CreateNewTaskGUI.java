@@ -72,10 +72,4 @@ public class CreateNewTaskGUI extends JDialog {
         dispose();
     }
 
-    public static void main(String[] args) {
-        CreateNewTaskGUI dialog = new CreateNewTaskGUI();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
 }
