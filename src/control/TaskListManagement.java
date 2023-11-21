@@ -11,6 +11,7 @@ public class TaskListManagement {
     static {
         try {
             tasklist = FileManagement.loadFile();
+            if (tasklist==null) tasklist=new ArrayList<>();
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
