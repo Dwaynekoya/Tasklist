@@ -1,5 +1,6 @@
 package view;
 
+import control.TaskListManagement;
 import model.Task;
 
 import javax.swing.*;
@@ -52,6 +53,7 @@ public class CreateNewTaskGUI extends JDialog {
     private void onOK() {
         // add your code here
         Task newTask = receiveInput();
+        TaskListManagement.addTask(newTask);
         dispose();
     }
 

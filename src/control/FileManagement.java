@@ -12,4 +12,10 @@ public class FileManagement {
         }
         return list;
     }
+    public static void saveFile(ArrayList list) throws IOException {
+        if (list!=null&&!list.isEmpty()){
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(Constants.TASKFILE));
+            objectOutputStream.writeObject(list);
+        }
+    }
 }

@@ -2,21 +2,26 @@ package control;
 
 import model.Task;
 
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class TaskTableModel extends AbstractTableModel {
     private ArrayList<Task> tasklist;
-    private String[] columnas;
+    private String[] columns;
+    private JToggleButton btnDone;
 
     public TaskTableModel() {
         this.tasklist=new ArrayList<>();
-        columnas=Constants.DEFAULLT_COLUMNS;
+        columns =Constants.DEFAULLT_COLUMNS;
+        btnDone=new JToggleButton(Constants.TEXTBUNDLE.getString("no"));
     }
 
     public TaskTableModel(ArrayList<Task> Tasks) {
         this.tasklist = Tasks;
-        columnas=Constants.DEFAULLT_COLUMNS;
+        columns =Constants.DEFAULLT_COLUMNS;
     }
     //devuelve boolean según si se añadió o no
     public boolean add(Task Task){
@@ -40,23 +45,33 @@ public class TaskTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columnas.length;
+        return columns.length;
     }
     //necesario para mostrar columnas
     @Override
     public String getColumnName(int column) {
-        return columnas[column];
+        return columns[column];
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Task Task = tasklist.get(rowIndex);
+        Task task = tasklist.get(rowIndex);
         switch (columnIndex){
-            case 0: return Task.getName();
-            case 1: return Task.getType();
-            case 2: return Task.getPriority();
+            case 0: return task.getName();
+            case 1: return task.getType();
+            case 2: return task.getPriority();
             //TODO: HACER QUE MUESTRE TOGGLE BUTTON
-            case 3: return Task.getName();
+            case 3:
+                btnDone.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        btnDone.setText(Constants.TEXTBUNDLE.getString("yes"));
+                        Task task = tasklist.get(rowIndex);
+                        task.setDone(true);
+                    }
+                });
+                if (task.isDone()) btnDone.isSelected();
+                return btnDone;
         }
         return null;
     }
@@ -71,8 +86,9 @@ public class TaskTableModel extends AbstractTableModel {
             //TODO: spinner?
             case 2: Task.setPriority((Integer) aValue);break;
             //TODO: togglebutton?
-            case 3: Task.setDone((Boolean) aValue);break;
+            case 3: ;break;
         }
+
         this.fireTableCellUpdated(rowIndex,columnIndex);
         this.fireTableRowsUpdated(rowIndex,rowIndex);
     }
