@@ -30,8 +30,6 @@ public class MainGUIWindow extends JFrame implements ActionListener {
     private JMenuItem tomorrowMenuItem;
     private JPanel contentPane;
     private AbstractTableModel model;
-    private final String commandAdd = TEXTBUNDLE.getString("add");
-    private final String commandRemove = TEXTBUNDLE.getString("remove");
 
     public MainGUIWindow() throws HeadlessException, IOException, ClassNotFoundException {
         setContentPane(contentPane);
@@ -39,8 +37,9 @@ public class MainGUIWindow extends JFrame implements ActionListener {
         setTitle(TEXTBUNDLE.getString("title"));
         setJMenuBar(menuBar);
         configTable();
-        this.addBttn.setActionCommand(commandAdd);
-        this.removeBttn.setActionCommand(commandRemove);
+        //setting action commands here to avoid not using Final strings
+        this.addBttn.setActionCommand("yes");
+        this.removeBttn.setActionCommand("no");
         this.addBttn.addActionListener(this);
         this.removeBttn.addActionListener(this);
     }
@@ -60,10 +59,10 @@ public class MainGUIWindow extends JFrame implements ActionListener {
         String actionCommand = e.getActionCommand();
 
         switch (actionCommand){
-            case commandAdd:
-                new CreateNewTaskGUI();
+            case "yes":
+                new CreateNewTaskGUI().setVisible(true);
                 break;
-            case commandRemove:
+            case "no":
                 //TODO:REMOVE
                 break;
             default:
