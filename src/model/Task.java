@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Task implements Serializable {
     private String name;
@@ -10,8 +11,9 @@ public class Task implements Serializable {
     private String type;
     private boolean habit;
     private boolean done;
+    private Date date;
 
-    public Task(String name, String details, int priority, int repeatEveryX, String type, boolean habit) {
+    public Task(String name, String details, int priority, int repeatEveryX, String type, boolean habit, Date date) {
         this.name = name;
         this.details = details;
         this.priority = priority;
@@ -20,6 +22,7 @@ public class Task implements Serializable {
         this.habit = habit;
         //por defecto una tarea  nueva no ha sido realizada:
         this.done=false;
+        this.date=date;
     }
 
     public boolean isDone() {

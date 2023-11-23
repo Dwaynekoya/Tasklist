@@ -1,12 +1,12 @@
 package view;
 
-import control.Constants;
-import control.TaskListManagement;
+import control.FileManagement;
+import control.MainGUIWindowControl;
 import control.TaskTableModel;
 import model.Task;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +15,8 @@ import java.util.ArrayList;
 
 import static control.Constants.TEXTBUNDLE;
 
-public class MainGUIWindow extends JFrame implements ActionListener {
+public class MainGUIWindow extends JFrame  {
+    //view with a table, menu bar with sorting/filtering options and buttons to add/remove tasks
     private JButton removeBttn;
     private JButton addBttn;
     private JTable taskTable;
@@ -29,44 +30,81 @@ public class MainGUIWindow extends JFrame implements ActionListener {
     private JMenuItem yesterdayMenuItem;
     private JMenuItem tomorrowMenuItem;
     private JPanel contentPane;
-    private AbstractTableModel model;
+    private TaskTableModel model;
+    private TableRowSorter<TaskTableModel> sorter;
 
     public MainGUIWindow() throws HeadlessException, IOException, ClassNotFoundException {
         setContentPane(contentPane);
         setSize(600,600);
         setTitle(TEXTBUNDLE.getString("title"));
         setJMenuBar(menuBar);
-        configTable();
         //setting action commands here to avoid not using Final strings
-        this.addBttn.setActionCommand("yes");
-        this.removeBttn.setActionCommand("no");
-        this.addBttn.addActionListener(this);
-        this.removeBttn.addActionListener(this);
+        this.addBttn.setActionCommand("add");
+        this.removeBttn.setActionCommand("remove");
+        //controller for the logic parts of the window
+        new MainGUIWindowControl(this);
+    }
+    //this uses a custom name to avoid overriding another method
+    public JMenuBar getMyMenuBar() {
+        return menuBar;
     }
 
-    private void configTable() throws IOException, ClassNotFoundException {
-        ArrayList<Task> tasks = TaskListManagement.getTasklist();
-        if (tasks==null){
-            model = new TaskTableModel();
-        } else {
-            model = new TaskTableModel(tasks);
-        }
-        this.taskTable.setModel(model);
+    public JButton getRemoveBttn() {
+        return removeBttn;
+    }
+
+    public JButton getAddBttn() {
+        return addBttn;
+    }
+
+    public JTable getTaskTable() {
+        return taskTable;
+    }
+
+
+
+    public JMenu getListMenu() {
+        return listMenu;
+    }
+
+    public JMenuItem getFilterMenuItem() {
+        return filterMenuItem;
+    }
+
+    public JMenuItem getArrangeMenuItem() {
+        return arrangeMenuItem;
+    }
+
+    public JMenuItem getChangeDateMenuItem() {
+        return changeDateMenuItem;
+    }
+
+    public JMenu getDateMenu() {
+        return dateMenu;
+    }
+
+    public JMenuItem getTodayMenuItem() {
+        return todayMenuItem;
+    }
+
+    public JMenuItem getYesterdayMenuItem() {
+        return yesterdayMenuItem;
+    }
+
+    public JMenuItem getTomorrowMenuItem() {
+        return tomorrowMenuItem;
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        String actionCommand = e.getActionCommand();
+    public JPanel getContentPane() {
+        return contentPane;
+    }
 
-        switch (actionCommand){
-            case "yes":
-                new CreateNewTaskGUI().setVisible(true);
-                break;
-            case "no":
-                //TODO:REMOVE
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + actionCommand);
-        }
+    public TaskTableModel getModel() {
+        return model;
+    }
+
+    public TableRowSorter<TaskTableModel> getSorter() {
+        return sorter;
     }
 }

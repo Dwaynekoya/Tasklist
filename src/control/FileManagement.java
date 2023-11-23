@@ -2,7 +2,9 @@ package control;
 
 import java.io.*;
 import java.util.ArrayList;
-
+/*
+* this class handles loading and saving a file that contains the Task arraylist where tasks are stored
+* */
 public class FileManagement {
     public static ArrayList loadFile() throws IOException, ClassNotFoundException {
         ArrayList list =null;

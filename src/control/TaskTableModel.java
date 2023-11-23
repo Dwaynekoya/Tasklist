@@ -7,6 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+//table model for the tasklist
 
 public class TaskTableModel extends AbstractTableModel {
     private ArrayList<Task> tasklist;
@@ -28,7 +29,7 @@ public class TaskTableModel extends AbstractTableModel {
         try {
             return tasklist.add(Task);
         } finally {
-            this.fireTableRowsInserted(tasklist.size(), tasklist.size()+1);
+            this.fireTableRowsInserted(tasklist.size()-1, tasklist.size()-1);
         }
     }
     //devuelve el Task que ha sido eliminado
@@ -61,7 +62,11 @@ public class TaskTableModel extends AbstractTableModel {
             case 1: return task.getType();
             case 2: return task.getPriority();
             //TODO: HACER QUE MUESTRE TOGGLE BUTTON
+            //https://tips4java.wordpress.com/2009/07/12/table-button-column/
+            //https://stackoverflow.com/questions/21845768/how-to-set-toggle-button-text-value-from-db-on-jtable
+            //https://stackoverflow.com/questions/7350445/how-do-i-get-the-cellrow-when-there-is-an-itemevent-in-the-jcombobox-within-the/7356518#7356518
             case 3:
+                btnDone=new JToggleButton(Constants.TEXTBUNDLE.getString("no"));
                 btnDone.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
