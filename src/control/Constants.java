@@ -1,5 +1,6 @@
 package control;
 
+import java.awt.*;
 import java.io.File;
 import java.util.ResourceBundle;
 
@@ -15,4 +16,5 @@ public class Constants {
     //serializable file for persistence
     public static final File TASKFILE = new File("./tasks.ser");
     public static final String DATEFORMAT= "dd/MM/yyyy";
+    public static final Color MAINCOLOR = Color.CYAN;
 }
