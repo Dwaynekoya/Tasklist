@@ -44,6 +44,7 @@ public class MainGUIWindow extends JFrame  {
         //controller for the logic parts of the window
         new MainGUIWindowControl(this);
     }
+    //GETTERS-> used in Control class
     //this uses a custom name to avoid overriding another method
     public JMenuBar getMyMenuBar() {
         return menuBar;

@@ -29,6 +29,7 @@ public class MainGUIWindowControl implements ActionListener {
             throw new RuntimeException(e);
         }
     }
+
     private void configTable() throws IOException, ClassNotFoundException {
         //loading the tasklist and setting it in the model
         ArrayList<Task> tasks = FileManagement.loadFile();

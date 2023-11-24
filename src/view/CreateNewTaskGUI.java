@@ -21,6 +21,7 @@ public class CreateNewTaskGUI extends JDialog {
     private JComboBox comboBoxType;
     private JButton btnHabit;
     private JSpinner spinnerDate;
+    private JLabel labelRepeat;
     private TaskTableModel model;
 
     public CreateNewTaskGUI(TaskTableModel model) {
@@ -29,7 +30,14 @@ public class CreateNewTaskGUI extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         this.model=model;
         spinnerDateFormat();
+        hideUnhideRepeat();
         okCancelButtons();
+    }
+
+    private void hideUnhideRepeat() {
+        //TODO: Hide repeat options until habit is checked
+        labelRepeat.setVisible(false);
+        spinnerRepeat.setVisible(false);
     }
 
     private void spinnerDateFormat() {
@@ -62,7 +70,8 @@ public class CreateNewTaskGUI extends JDialog {
         boolean habit = this.btnHabit.isSelected();
         int repeat = (int) this.spinnerRepeat.getValue();
         Date date = (Date) this.spinnerDate.getValue();
-        newTask=new Task(name,details,priority,repeat,type,habit, date);
+        //TODO: new task depending on habit/common task
+        //newTask=new Task(name,details,priority,repeat,type,habit, date);
         return newTask;
     }
 

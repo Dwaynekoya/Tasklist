@@ -13,5 +13,7 @@ public class Main {
                  UnsupportedLookAndFeelException e) {
             throw new RuntimeException(e);
         }
+        //TODO: Custom jmenubar
+        //https://stackoverflow.com/questions/15648030/change-background-and-text-color-of-jmenubar-and-jmenu-objects-inside-it
     }
 }
