@@ -37,6 +37,7 @@ public class MainGUIWindow extends JFrame  {
         setContentPane(contentPane);
         setSize(600,600);
         setTitle(TEXTBUNDLE.getString("title"));
+        customMenuBar();
         setJMenuBar(menuBar);
         //setting action commands here to avoid not using Final strings
         this.addBttn.setActionCommand("add");
@@ -44,6 +45,13 @@ public class MainGUIWindow extends JFrame  {
         //controller for the logic parts of the window
         new MainGUIWindowControl(this);
     }
+    //visual adjustments
+    private void customMenuBar() {
+        JMenu menus[] = {dateMenu, listMenu};
+        //makes jMenus inherit menubar background color
+        for (JMenu menu:menus) menu.setOpaque(false);
+    }
+
     //GETTERS-> used in Control class
     //this uses a custom name to avoid overriding another method
     public JMenuBar getMyMenuBar() {
