@@ -1,6 +1,9 @@
 package view;
 
+import control.Constants;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class LoginDialog extends JDialog {
@@ -13,6 +16,7 @@ public class LoginDialog extends JDialog {
     public LoginDialog() {
         setContentPane(contentPane);
         setModal(true);
+        styleTextFields();
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
@@ -41,6 +45,11 @@ public class LoginDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    }
+//STYLE: makes texfield+passwordfield have a line under them instead of the default border
+    private void styleTextFields() {
+        textField1.setBorder(Constants.INPUTBORDER);
+        passwordField1.setBorder(Constants.INPUTBORDER);
     }
 
     private void onOK() {

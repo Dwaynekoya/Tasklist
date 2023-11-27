@@ -30,9 +30,20 @@ public class CreateNewTaskGUI extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         this.model=model;
+        styleTextFields();
+        comboBoxInput();
         spinnerDateFormat();
         hideUnhideRepeat();
         okCancelButtons();
+    }
+//sets the combobox so that it can take input and add it as a new option
+    private void comboBoxInput() {
+        //TODO: https://stackoverflow.com/questions/7387299/dynamically-adding-items-to-a-jcombobox
+    }
+
+    private void styleTextFields() {
+        textFieldName.setBorder(Constants.INPUTBORDER);
+        textAreaDetails.setBorder(Constants.INPUTBORDER);
     }
 
     private void hideUnhideRepeat() {
@@ -54,10 +65,8 @@ public class CreateNewTaskGUI extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
+        // adds task to the model
         Task newTask = receiveInput();
-        //TaskListManagement.addTask(newTask);
-        //System.out.println(TaskListManagement.getTasklist());
         model.add(newTask);
         dispose();
     }
@@ -81,7 +90,6 @@ public class CreateNewTaskGUI extends JDialog {
     }
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
     }
     private void okCancelButtons() {

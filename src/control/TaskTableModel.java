@@ -67,7 +67,7 @@ public class TaskTableModel extends AbstractTableModel {
                     case 2->priority=Constants.TEXTBUNDLE.getString("medium");
                     case 3->priority=Constants.TEXTBUNDLE.getString("high");
                 }
-                return task.getPriority();
+                return priority;
             //TODO: HACER QUE MUESTRE TOGGLE BUTTON
             //https://tips4java.wordpress.com/2009/07/12/table-button-column/
             //https://stackoverflow.com/questions/21845768/how-to-set-toggle-button-text-value-from-db-on-jtable
