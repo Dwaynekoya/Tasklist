@@ -2,6 +2,7 @@ package view;
 
 import control.Constants;
 import control.TaskTableModel;
+import model.Habit;
 import model.Task;
 
 import javax.swing.*;
@@ -71,7 +72,11 @@ public class CreateNewTaskGUI extends JDialog {
         int repeat = (int) this.spinnerRepeat.getValue();
         Date date = (Date) this.spinnerDate.getValue();
         //TODO: new task depending on habit/common task
-        //newTask=new Task(name,details,priority,repeat,type,habit, date);
+        if (habit){
+            newTask = new Habit(name,details,priority,type,date,repeat);
+        } else {
+            newTask = new Task(name, details, priority, type, date);
+        }
         return newTask;
     }
 
