@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            /*LoginDialog login = new LoginDialog();
+            LoginDialog login = new LoginDialog();
             login.pack();
-            login.setVisible(true);*/
+            login.setVisible(true);
             new MainGUIWindow().setVisible(true);
         } catch (IOException | ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException e) {

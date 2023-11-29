@@ -1,9 +1,9 @@
 package view;
 
 import control.Constants;
+import view.components.CustomTitleBar;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class LoginDialog extends JDialog {
@@ -12,6 +12,8 @@ public class LoginDialog extends JDialog {
     private JButton buttonCancel;
     private JTextField textField1;
     private JPasswordField passwordField1;
+    private JButton closeButton;
+    private CustomTitleBar titleBar;
 
     public LoginDialog() {
         setContentPane(contentPane);
@@ -67,5 +69,10 @@ public class LoginDialog extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        titleBar=new CustomTitleBar(this);
     }
 }

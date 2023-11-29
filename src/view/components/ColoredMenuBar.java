@@ -48,7 +48,7 @@ public class ColoredMenuBar extends JMenuBar implements MouseListener, MouseMoti
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("Mouse entered");
+        //System.out.println("Mouse entered");
     }
 
     @Override
