@@ -40,7 +40,7 @@ public class MainGUIWindow extends JFrame  {
         setSize(600,600);
         setTitle(TEXTBUNDLE.getString("title"));
         customMenuBar();
-        setJMenuBar(menuBar);
+        //setJMenuBar(menuBar);
         //setting action commands here to avoid not using Final strings
         this.addBttn.setActionCommand("add");
         this.removeBttn.setActionCommand("remove");

@@ -6,7 +6,10 @@ import model.Habit;
 import model.Task;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -20,10 +23,12 @@ public class CreateNewTaskGUI extends JDialog {
     private JSlider sliderPriority;
     private JSpinner spinnerRepeat;
     private JComboBox comboBoxType;
-    private JButton btnHabit;
     private JSpinner spinnerDate;
     private JLabel labelRepeat;
+    private JToggleButton toggleHabit;
     private TaskTableModel model;
+    private ArrayList<String> types;
+    private DefaultComboBoxModel comboBoxModel;
 
     public CreateNewTaskGUI(TaskTableModel model) {
         setContentPane(contentPane);
@@ -31,25 +36,55 @@ public class CreateNewTaskGUI extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         this.model=model;
         styleTextFields();
-        comboBoxInput();
         spinnerDateFormat();
-        hideUnhideRepeat();
+        comboBoxModel();
+        //allows the user to write their own Type in the combobox
+        comboBoxType.setEditable(true);
+        //hides an input field until togglebutton is pressed
+        showRepeat(false);
+        toggleButtonHabit();
         okCancelButtons();
     }
-//sets the combobox so that it can take input and add it as a new option
-    private void comboBoxInput() {
-        //TODO: https://stackoverflow.com/questions/7387299/dynamically-adding-items-to-a-jcombobox
+
+    private void comboBoxModel() {
+        //loads the different types for the tasks
+        loadTypes();
+        comboBoxModel = new DefaultComboBoxModel<>(types.toArray());
     }
+
+    private void loadTypes() {
+        //TODO: load file
+        types=new ArrayList<>();
+        types.add(Constants.TEXTBUNDLE.getString("default"));
+    }
+
+    //sets the togglebutton so its text changes on click and shows another input field
+    private void toggleButtonHabit() {
+        toggleHabit.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (toggleHabit.isSelected()) {
+                    toggleHabit.setText(Constants.TEXTBUNDLE.getString("yes"));
+                    showRepeat(true);
+                }
+                else {
+                    toggleHabit.setText(Constants.TEXTBUNDLE.getString("no"));
+                    showRepeat(false);
+                }
+            }
+        });
+    }
+
 
     private void styleTextFields() {
         textFieldName.setBorder(Constants.INPUTBORDER);
         textAreaDetails.setBorder(Constants.INPUTBORDER);
     }
 
-    private void hideUnhideRepeat() {
+    private void showRepeat(boolean shown) {
         //TODO: Hide repeat options until habit is checked
-        labelRepeat.setVisible(false);
-        spinnerRepeat.setVisible(false);
+        labelRepeat.setVisible(shown);
+        spinnerRepeat.setVisible(shown);
     }
 
     private void spinnerDateFormat() {
@@ -77,7 +112,9 @@ public class CreateNewTaskGUI extends JDialog {
         String details = this.textAreaDetails.getText();
         int priority = this.sliderPriority.getValue();
         String type = (String) this.comboBoxType.getSelectedItem();
-        boolean habit = this.btnHabit.isSelected();
+        //adds type to the list if it isnt there already
+        if (!types.contains(type)) comboBoxModel.addElement(type);
+        boolean habit = this.toggleHabit.isSelected();
         int repeat = (int) this.spinnerRepeat.getValue();
         Date date = (Date) this.spinnerDate.getValue();
         //TODO: new task depending on habit/common task
@@ -86,7 +123,12 @@ public class CreateNewTaskGUI extends JDialog {
         } else {
             newTask = new Task(name, details, priority, type, date);
         }
+        saveTypes();
         return newTask;
+    }
+
+    private void saveTypes() {
+        //TODO: save the different types
     }
 
     private void onCancel() {
