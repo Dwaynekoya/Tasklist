@@ -44,19 +44,25 @@ public class CreateNewTaskGUI extends JDialog {
         styleTextFields();
         spinnerDateFormat();
         comboBoxModel();
-        //allows the user to write their own Type in the combobox
-        comboBoxType.setEditable(true);
         //hides an input field until togglebutton is pressed
+        defaultButtons();
+    }
+
+    private void defaultButtons() {
         showRepeat(false);
         toggleButtonHabit();
         okCancelButtons();
     }
-//preparing a model for the combobox so we can both load the existing types + add new ones
+
+    //preparing a model for the combobox so we can both load the existing types + add new ones
     private void comboBoxModel() {
         //loads the different types for the tasks
         loadTypes();
         System.out.println(types.toArray());
         comboBoxModel = new DefaultComboBoxModel<>(types.toArray());
+        comboBoxModel.addAll(types);
+        //allows the user to write their own Type in the combobox
+        comboBoxType.setEditable(true);
     }
 
     private void loadTypes() {
