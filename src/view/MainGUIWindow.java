@@ -1,9 +1,7 @@
 package view;
 
-import control.FileManagement;
 import control.MainGUIWindowControl;
 import control.TaskTableModel;
-import model.Task;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -12,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import view.components.*;
 
 import static control.Constants.MAINCOLOR;
@@ -32,18 +30,19 @@ public class MainGUIWindow extends JFrame  {
     private JMenuItem changeDateMenuItem;
     private JMenu dateMenu;
     private JMenuItem todayMenuItem,yesterdayMenuItem,tomorrowMenuItem;
+    private JButton closeButton;
     private TaskTableModel model;
     private TableRowSorter<TaskTableModel> sorter;
 
     public MainGUIWindow() throws HeadlessException, IOException, ClassNotFoundException {
         setContentPane(contentPane);
         setSize(600,600);
-        setTitle(TEXTBUNDLE.getString("title"));
+        //setTitle(TEXTBUNDLE.getString("title"));
+        setLocationByPlatform(true);
+        //hides default titlebar: our jmenubar is going to work as one.
+        setUndecorated(true);
         customMenuBar();
-        //setJMenuBar(menuBar);
-        //setting action commands here to avoid not using Final strings
-        this.addBttn.setActionCommand("add");
-        this.removeBttn.setActionCommand("remove");
+        setJMenuBar(menuBar);
         //controller for the logic parts of the window
         new MainGUIWindowControl(this);
     }
@@ -51,12 +50,15 @@ public class MainGUIWindow extends JFrame  {
     //VISUAL ADJUSTMENTS
     private void customMenuBar() {
         JMenu menus[] = {dateMenu, listMenu};
-        //makes jMenus inherit menubar background color
+        //makes jMenus inherit menubar background color (not working TODO)
         for (JMenu menu:menus) menu.setOpaque(false);
+        menuBar.add(Box.createHorizontalGlue());
+        closeButton=new JButton("x");
+        menuBar.add(closeButton);
     }
     private void createUIComponents() {
-        // makes menubar use custom class: allows us to set the color
-        this.menuBar=new ColoredMenuBar();
+        // makes menubar use custom class: allows us to set the color + use it as the title bar
+        this.menuBar=new ColoredMenuBar(this);
         ((ColoredMenuBar) menuBar).setBgColor(MAINCOLOR);
         menuBar.setBorder(new LineBorder(MAINCOLOR));
         customButtons();
@@ -82,6 +84,9 @@ public class MainGUIWindow extends JFrame  {
     }
 
     //GETTERS-> used in Control class
+    public JButton getCloseButton() {
+        return closeButton;
+    }
     //this uses a custom name to avoid overriding another method
     public JMenuBar getMyMenuBar() {
         return menuBar;

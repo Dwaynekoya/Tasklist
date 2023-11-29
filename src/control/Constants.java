@@ -15,8 +15,10 @@ public class Constants {
             TEXTBUNDLE.getString("priority"),
             TEXTBUNDLE.getString("done")
     };
-    //serializable file for persistence
+    //serializable file for tasks
     public static final File TASKFILE = new File("./tasks.ser");
+    //serializable file for tast TYPES:
+    public static final File TYPESFILE = new File("./types.ser");
     public static final String DATEFORMAT= "dd/MM/yyyy";
     public static final Color MAINCOLOR = Color.CYAN;
     //border set for all text inputs

@@ -1,6 +1,7 @@
 package view;
 
 import control.Constants;
+import control.FileManagement;
 import control.TaskTableModel;
 import model.Habit;
 import model.Task;
@@ -9,7 +10,9 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -27,11 +30,14 @@ public class CreateNewTaskGUI extends JDialog {
     private JLabel labelRepeat;
     private JToggleButton toggleHabit;
     private TaskTableModel model;
-    private ArrayList<String> types;
     private DefaultComboBoxModel comboBoxModel;
+    private ArrayList<String> types;
 
     public CreateNewTaskGUI(TaskTableModel model) {
         setContentPane(contentPane);
+        //TODO: FIX SIZE. THIS DOES NOTHING
+        setSize(330,400);
+        setResizable(false);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         this.model=model;
@@ -45,16 +51,25 @@ public class CreateNewTaskGUI extends JDialog {
         toggleButtonHabit();
         okCancelButtons();
     }
-
+//preparing a model for the combobox so we can both load the existing types + add new ones
     private void comboBoxModel() {
         //loads the different types for the tasks
         loadTypes();
+        System.out.println(types.toArray());
         comboBoxModel = new DefaultComboBoxModel<>(types.toArray());
     }
 
     private void loadTypes() {
-        //TODO: load file
-        types=new ArrayList<>();
+        if (Constants.TYPESFILE.exists()){
+            try {
+                //loadFile returns an arraylist
+                types = (ArrayList<String>) FileManagement.loadFile(Constants.TYPESFILE);
+            } catch (IOException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            types=new ArrayList<>();
+        }
         types.add(Constants.TEXTBUNDLE.getString("default"));
     }
 
@@ -128,7 +143,11 @@ public class CreateNewTaskGUI extends JDialog {
     }
 
     private void saveTypes() {
-        //TODO: save the different types
+        try {
+            FileManagement.saveFile(types, Constants.TYPESFILE);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void onCancel() {

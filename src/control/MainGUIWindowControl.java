@@ -19,6 +19,7 @@ public class MainGUIWindowControl implements ActionListener {
     private JTable taskTable;
     private TableRowSorter<TaskTableModel> sorter;
     private JMenuBar menuBar;
+    private JButton closeButton;
 
     public MainGUIWindowControl(MainGUIWindow window) {
         this.window = window;
@@ -32,7 +33,7 @@ public class MainGUIWindowControl implements ActionListener {
 
     private void configTable() throws IOException, ClassNotFoundException {
         //loading the tasklist and setting it in the model
-        ArrayList<Task> tasks = FileManagement.loadFile();
+        ArrayList<Task> tasks = FileManagement.loadFile(Constants.TASKFILE);
         if (tasks==null) tasks=new ArrayList<>();
         model = new TaskTableModel(tasks);
         this.taskTable.setModel(model);
@@ -51,13 +52,20 @@ public class MainGUIWindowControl implements ActionListener {
 
 
     private void findComponents() {
+        //accesing elements through getters
         this.taskTable = window.getTaskTable();
         this.model = window.getModel();
         this.addBttn = window.getAddBttn();
-        this.addBttn.addActionListener(this);
         this.removeBttn = window.getRemoveBttn();
-        this.removeBttn.addActionListener(this);
         this.menuBar=window.getMyMenuBar();
+        this.closeButton=window.getCloseButton();
+        //setting action commands here
+        this.addBttn.setActionCommand("add");
+        this.removeBttn.setActionCommand("remove");
+        this.closeButton.setActionCommand("close");
+        this.addBttn.addActionListener(this);
+        this.removeBttn.addActionListener(this);
+        this.closeButton.addActionListener(this);
     }
 
     @Override
@@ -70,6 +78,10 @@ public class MainGUIWindowControl implements ActionListener {
             case "remove":
                 //TODO:REMOVE
 
+                break;
+            case "close":
+                //TODO: guardar fichero
+                System.exit(0);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + actionCommand);
