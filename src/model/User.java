@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class User implements Serializable {
     private String username;
@@ -32,7 +33,7 @@ public class User implements Serializable {
         if (obj instanceof User){
             String objName = ((User) obj).getUsername();
             char[] objPassword = ((User) obj).getPassword();
-            if (this.username.equals(objName) && this.password.equals(objPassword)) {
+            if (this.username.equals(objName) && Arrays.equals(this.password, objPassword)) {
                 System.out.println("---LOGGING IN---");
                 return true;
             }
