@@ -17,8 +17,10 @@ public class Constants {
     };
     //serializable file for tasks
     public static final File TASKFILE = new File("./tasks.ser");
-    //serializable file for tast TYPES:
+    //serializable file for task TYPES:
     public static final File TYPESFILE = new File("./types.ser");
+    //serializable file for USERS:
+    public static final File USERFILE = new File("./users.ser");
     public static final String DATEFORMAT= "dd/MM/yyyy";
     public static final Color MAINCOLOR = Color.CYAN;
     //border set for all text inputs

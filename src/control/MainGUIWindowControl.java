@@ -24,14 +24,10 @@ public class MainGUIWindowControl implements ActionListener {
     public MainGUIWindowControl(MainGUIWindow window) {
         this.window = window;
         findComponents();
-        try {
-            configTable();
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        configTable();
     }
 
-    private void configTable() throws IOException, ClassNotFoundException {
+    private void configTable() {
         //loading the tasklist and setting it in the model
         ArrayList<Task> tasks = FileManagement.loadFile(Constants.TASKFILE);
         if (tasks==null) tasks=new ArrayList<>();
@@ -54,7 +50,6 @@ public class MainGUIWindowControl implements ActionListener {
     private void findComponents() {
         //accesing elements through getters
         this.taskTable = window.getTaskTable();
-        this.model = window.getModel();
         this.addBttn = window.getAddBttn();
         this.removeBttn = window.getRemoveBttn();
         this.menuBar=window.getMyMenuBar();

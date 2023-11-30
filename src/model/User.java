@@ -34,11 +34,9 @@ public class User implements Serializable {
             String objName = ((User) obj).getUsername();
             char[] objPassword = ((User) obj).getPassword();
             if (this.username.equals(objName) && Arrays.equals(this.password, objPassword)) {
-                System.out.println("---LOGGING IN---");
                 return true;
             }
         }
-        System.out.println("One or more of the fields are wrong.");
         return false;
     }
 }

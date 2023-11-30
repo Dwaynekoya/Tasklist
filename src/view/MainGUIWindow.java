@@ -7,14 +7,11 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import view.components.*;
 
 import static control.Constants.MAINCOLOR;
-import static control.Constants.TEXTBUNDLE;
 import static java.awt.Color.CYAN;
 import static java.awt.Color.YELLOW;
 
@@ -31,8 +28,6 @@ public class MainGUIWindow extends JFrame  {
     private JMenu dateMenu;
     private JMenuItem todayMenuItem,yesterdayMenuItem,tomorrowMenuItem;
     private JButton closeButton;
-    private TaskTableModel model;
-    private TableRowSorter<TaskTableModel> sorter;
 
     public MainGUIWindow() throws HeadlessException, IOException, ClassNotFoundException {
         setContentPane(contentPane);
@@ -49,7 +44,7 @@ public class MainGUIWindow extends JFrame  {
 
     //VISUAL ADJUSTMENTS
     private void customMenuBar() {
-        JMenu menus[] = {dateMenu, listMenu};
+        JMenu[] menus = {dateMenu, listMenu};
         //makes jMenus inherit menubar background color (not working TODO)
         for (JMenu menu:menus) menu.setOpaque(false);
         menuBar.add(Box.createHorizontalGlue());
@@ -79,8 +74,8 @@ public class MainGUIWindow extends JFrame  {
         ((OvalButton)removeBttn).setBorderThickness(0);
         removeBttn.setText("REMOVE");
         ((OvalButton)removeBttn).setColorNormal(CYAN);
-        addBttn.setFont(new Font("arial", NORMAL, 40));
-        removeBttn.setFont(new Font("arial", NORMAL, 40));
+        addBttn.setFont(new Font("Roboto", Font.PLAIN, 40));
+        removeBttn.setFont(new Font("Roboto", Font.PLAIN, 40));
     }
 
     //GETTERS-> used in Control class
@@ -140,12 +135,5 @@ public class MainGUIWindow extends JFrame  {
         return contentPane;
     }
 
-    public TaskTableModel getModel() {
-        return model;
-    }
-
-    public TableRowSorter<TaskTableModel> getSorter() {
-        return sorter;
-    }
 
 }

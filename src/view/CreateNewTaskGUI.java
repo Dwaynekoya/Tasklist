@@ -67,12 +67,7 @@ public class CreateNewTaskGUI extends JDialog {
 
     private void loadTypes() {
         if (Constants.TYPESFILE.exists()){
-            try {
-                //loadFile returns an arraylist
-                types = (ArrayList<String>) FileManagement.loadFile(Constants.TYPESFILE);
-            } catch (IOException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            types = (ArrayList<String>) FileManagement.loadFile(Constants.TYPESFILE);
         } else {
             types=new ArrayList<>();
         }
@@ -144,17 +139,12 @@ public class CreateNewTaskGUI extends JDialog {
         } else {
             newTask = new Task(name, details, priority, type, date);
         }
-        saveTypes();
+        //save types to serializable file
+        FileManagement.saveFile(types, Constants.TYPESFILE);
         return newTask;
     }
 
-    private void saveTypes() {
-        try {
-            FileManagement.saveFile(types, Constants.TYPESFILE);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     private void onCancel() {
         dispose();
