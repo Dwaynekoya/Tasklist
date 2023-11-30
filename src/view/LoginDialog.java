@@ -22,6 +22,8 @@ public class LoginDialog extends JDialog {
 
     public LoginDialog() {
         setContentPane(contentPane);
+        //hides the default titlebar: we are using our own component as one
+        setUndecorated(true);
         setModal(true);
         styleTextFields();
         getRootPane().setDefaultButton(buttonOK);
@@ -89,6 +91,13 @@ public class LoginDialog extends JDialog {
         titleBar=new CustomTitleBar(this);
     }
     private void buttonOKCancel() {
+        //own closeButton: closes the app, same as the cancel button
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();

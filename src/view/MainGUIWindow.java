@@ -47,8 +47,11 @@ public class MainGUIWindow extends JFrame  {
         JMenu[] menus = {dateMenu, listMenu};
         //makes jMenus inherit menubar background color (not working TODO)
         for (JMenu menu:menus) menu.setOpaque(false);
-        menuBar.add(Box.createHorizontalGlue());
+        for (int i=0;i<95;i++) menuBar.add(Box.createHorizontalGlue());
         closeButton=new JButton("x");
+        closeButton.setBorderPainted(false);
+        closeButton.setContentAreaFilled(false);
+        closeButton.setFocusPainted(false);
         menuBar.add(closeButton);
     }
     private void createUIComponents() {
