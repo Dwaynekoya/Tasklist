@@ -134,7 +134,13 @@
       <item class="javax.swing.JToggleButton" icon="" removable="true" auto-create-binding="false" can-attach-label="false">
         <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
       </item>
-      <item class="view.components.CustomTitleBar" icon="/com/intellij/uiDesigner/icons/panel.svg" removable="true" auto-create-binding="false" can-attach-label="false" is-container="true">
+      <item class="view.components.CloseButton" icon="/com/intellij/uiDesigner/icons/button.svg" removable="true" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
+      </item>
+      <item class="view.components.CustomTitleBar" icon="" removable="true" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
+      </item>
+      <item class="view.components.ColoredButton" icon="/com/intellij/uiDesigner/icons/button.svg" removable="true" auto-create-binding="false" can-attach-label="false">
         <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
       </item>
     </group>

@@ -109,7 +109,15 @@ public class TaskTableModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         //TODO: toquetear esto para poner los componentes custom
-        return true;
+        Task task = getTask(rowIndex);
+
+        return false;
+    }
+
+    private Task getTask(int rowIndex) {
+        Task task = null;
+        task=this.gettasklist().get(rowIndex);
+        return task;
     }
 
     public ArrayList<Task> gettasklist() {

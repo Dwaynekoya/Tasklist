@@ -57,7 +57,6 @@ public class MainGUIWindowControl implements ActionListener {
         //setting action commands here
         this.addBttn.setActionCommand("add");
         this.removeBttn.setActionCommand("remove");
-        this.closeButton.setActionCommand("close");
         this.addBttn.addActionListener(this);
         this.removeBttn.addActionListener(this);
         this.closeButton.addActionListener(this);
@@ -75,7 +74,8 @@ public class MainGUIWindowControl implements ActionListener {
 
                 break;
             case "close":
-                //TODO: guardar fichero
+                ArrayList tasks = model.gettasklist();
+                FileManagement.saveFile(tasks, Constants.TASKFILE);
                 System.exit(0);
                 break;
             default:

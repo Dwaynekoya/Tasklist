@@ -1,6 +1,9 @@
 package model;
 
 import java.util.Date;
+/*
+* task that repeats over time
+* */
 
 public class Habit extends Task{
     private int repeatEveryX;

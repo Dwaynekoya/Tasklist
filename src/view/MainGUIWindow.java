@@ -1,5 +1,6 @@
 package view;
 
+import control.Constants;
 import control.MainGUIWindowControl;
 import control.TaskTableModel;
 
@@ -47,11 +48,8 @@ public class MainGUIWindow extends JFrame  {
         JMenu[] menus = {dateMenu, listMenu};
         //makes jMenus inherit menubar background color (not working TODO)
         for (JMenu menu:menus) menu.setOpaque(false);
-        for (int i=0;i<95;i++) menuBar.add(Box.createHorizontalGlue());
-        closeButton=new JButton("x");
-        closeButton.setBorderPainted(false);
-        closeButton.setContentAreaFilled(false);
-        closeButton.setFocusPainted(false);
+        for (int i=0;i<80;i++) menuBar.add(Box.createHorizontalGlue());
+        closeButton=new CloseButton();
         menuBar.add(closeButton);
     }
     private void createUIComponents() {
@@ -69,10 +67,11 @@ public class MainGUIWindow extends JFrame  {
         removeBttn.setText("REMOVE");
         ((ColoredButton)removeBttn).setMainColor(CYAN);*/
         //int shape, int orientation, Color colorNormal, Color colorHighlighted, Color colorBorderNormal, Color colorBorderHighlighted
-        addBttn = new OvalButton(OvalButton.SHAPE_CAPSULE,OvalButton.HORIZONTAL, CYAN, YELLOW, CYAN, YELLOW);
-        addBttn.setText("ADD");
-        ((OvalButton)addBttn).setBorderThickness(0);
-        ((OvalButton)addBttn).setColorNormal(CYAN);
+        //addBttn = new OvalButton(OvalButton.SHAPE_CAPSULE,OvalButton.HORIZONTAL, CYAN, YELLOW, CYAN, YELLOW);
+        //addBttn.setText("ADD");
+        //((OvalButton)addBttn).setBorderThickness(0);
+        //((OvalButton)addBttn).setColorNormal(CYAN);
+        addBttn = new ColoredButton(Constants.TEXTBUNDLE.getString("add"));
         removeBttn = new OvalButton(OvalButton.SHAPE_CAPSULE,OvalButton.HORIZONTAL, CYAN, YELLOW, CYAN, YELLOW);
         ((OvalButton)removeBttn).setBorderThickness(0);
         removeBttn.setText("REMOVE");
@@ -137,6 +136,4 @@ public class MainGUIWindow extends JFrame  {
     public JPanel getContentPane() {
         return contentPane;
     }
-
-
 }

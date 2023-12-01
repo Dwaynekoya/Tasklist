@@ -9,6 +9,7 @@ import model.Task;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,9 +36,12 @@ public class CreateNewTaskGUI extends JDialog {
 
     public CreateNewTaskGUI(TaskTableModel model) {
         setContentPane(contentPane);
-        //TODO: FIX SIZE. THIS DOES NOTHING
-        setSize(330,400);
+        //default size would cut the hidden fields when shown unless we explicitly make the window bigger
+        setMinimumSize(new Dimension(330,330));
         setResizable(false);
+        setUndecorated(true);
+        //centers the window
+        setLocationRelativeTo(null);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         this.model=model;
@@ -46,6 +50,7 @@ public class CreateNewTaskGUI extends JDialog {
         comboBoxModel();
         //hides an input field until togglebutton is pressed
         defaultButtons();
+        pack();
     }
 
     private void defaultButtons() {
@@ -57,21 +62,23 @@ public class CreateNewTaskGUI extends JDialog {
     //preparing a model for the combobox so we can both load the existing types + add new ones
     private void comboBoxModel() {
         //loads the different types for the tasks
-        loadTypes();
-        System.out.println(types.toArray());
-        comboBoxModel = new DefaultComboBoxModel<>(types.toArray());
-        comboBoxModel.addAll(types);
+        //loadTypes();
+        //System.out.println(types.toArray());
+        //comboBoxModel = new DefaultComboBoxModel<>(types.toArray());
+        comboBoxModel = new DefaultComboBoxModel<>(Constants.TYPES);
         //allows the user to write their own Type in the combobox
         comboBoxType.setEditable(true);
+        comboBoxType.setModel(comboBoxModel);
     }
 
     private void loadTypes() {
-        if (Constants.TYPESFILE.exists()){
+        /*if (Constants.TYPESFILE.exists()){
             types = (ArrayList<String>) FileManagement.loadFile(Constants.TYPESFILE);
         } else {
             types=new ArrayList<>();
-        }
-        types.add(Constants.TEXTBUNDLE.getString("default"));
+        }*/
+
+        //types.add(Constants.TEXTBUNDLE.getString("default"));
     }
 
     //sets the togglebutton so its text changes on click and shows another input field
@@ -129,18 +136,22 @@ public class CreateNewTaskGUI extends JDialog {
         int priority = this.sliderPriority.getValue();
         String type = (String) this.comboBoxType.getSelectedItem();
         //adds type to the list if it isnt there already
-        if (!types.contains(type)) comboBoxModel.addElement(type);
+        /*if (!types.contains(type)) {
+            System.out.println(type);
+            //TODO: FIX: DOESNT DO IT
+            comboBoxModel.addElement(type);
+        }*/
         boolean habit = this.toggleHabit.isSelected();
         int repeat = (int) this.spinnerRepeat.getValue();
         Date date = (Date) this.spinnerDate.getValue();
-        //TODO: new task depending on habit/common task
+        //new task or habit
         if (habit){
             newTask = new Habit(name,details,priority,type,date,repeat);
         } else {
             newTask = new Task(name, details, priority, type, date);
         }
         //save types to serializable file
-        FileManagement.saveFile(types, Constants.TYPESFILE);
+        //FileManagement.saveFile(types, Constants.TYPESFILE);
         return newTask;
     }
 
