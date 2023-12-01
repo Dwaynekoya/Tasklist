@@ -3,13 +3,12 @@ package view;
 import control.Constants;
 import control.FileManagement;
 import model.User;
-import view.components.CloseButton;
+import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,6 +21,9 @@ public class LoginDialog extends JDialog {
     private JButton closeButton;
     private CustomTitleBar titleBar;
     private JLabel image;
+    private JLabel loginLabel;
+    private JLabel usernamelabel;
+    private JLabel passwordLabel;
     private ArrayList<User> users;
 
     public LoginDialog() {
@@ -30,7 +32,7 @@ public class LoginDialog extends JDialog {
         //hides the default titlebar: we are using our own component as one
         setUndecorated(true);
         setModal(true);
-        styleTextFields();
+        textStyle();
         getRootPane().setDefaultButton(buttonOK);
         buttonOKCancel();
         setMinimumSize(new Dimension(500,getHeight()));
@@ -39,10 +41,19 @@ public class LoginDialog extends JDialog {
 
     }
 
+    private void textStyle() {
+        loginLabel.setForeground(Constants.DARKMAINCOLOR);
+        usernamelabel.setForeground(Constants.DARKMAINCOLOR);
+        passwordLabel.setForeground(Constants.DARKMAINCOLOR);
+        styleTextFields();
+    }
+
     //STYLE: makes texfield+passwordfield have a line under them instead of the default border
     private void styleTextFields() {
         textField1.setBorder(Constants.INPUTBORDER);
         passwordField1.setBorder(Constants.INPUTBORDER);
+        textField1.setForeground(Constants.DARKMAINCOLOR);
+        passwordField1.setForeground(Constants.DARKMAINCOLOR);
     }
 
     private void onOK() {
@@ -100,7 +111,6 @@ public class LoginDialog extends JDialog {
     }
     private void buttonOKCancel() {
         //own closeButton: closes the app, same as the cancel button
-        closeButton=new CloseButton();
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

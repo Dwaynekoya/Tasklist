@@ -15,6 +15,7 @@ public class CustomTitleBar extends JMenuBar implements MouseListener, MouseMoti
         this.dialog=dialog;
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
+        setMinimumSize(new Dimension(getWidth(),20));
     }
 //listener methods - mouse: (some of them must be implemented but have no functionality in this component)
     @Override
