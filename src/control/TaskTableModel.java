@@ -1,6 +1,7 @@
 package control;
 
 import model.Task;
+import view.TaskGUI;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -109,8 +110,8 @@ public class TaskTableModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         //TODO: toquetear esto para poner los componentes custom
-        Task task = getTask(rowIndex);
-
+//        Task task = getTask(rowIndex);
+        new TaskGUI(this, rowIndex).setVisible(true);
         return false;
     }
 

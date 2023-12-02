@@ -1,5 +1,7 @@
 package view.components;
 
+import control.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -16,6 +18,7 @@ public class CustomTitleBar extends JMenuBar implements MouseListener, MouseMoti
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         setMinimumSize(new Dimension(getWidth(),20));
+        setBorder(BorderFactory.createLineBorder(Constants.TINTEDGRAY));
     }
 //listener methods - mouse: (some of them must be implemented but have no functionality in this component)
     @Override

@@ -1,10 +1,10 @@
 package view;
 
 import control.Constants;
-import control.FileManagement;
 import control.TaskTableModel;
 import model.Habit;
 import model.Task;
+import view.components.CloseButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
@@ -12,13 +12,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CreateNewTaskGUI extends JDialog {
+public class TaskGUI extends JDialog {
     //dialog with a form to add a new Task to the list
     private JPanel contentPane;
     private JButton buttonOK;
@@ -33,13 +31,18 @@ public class CreateNewTaskGUI extends JDialog {
     private JToggleButton toggleHabit;
     private CustomTitleBar customTitleBar1;
     private JLabel daysLabel;
+    private JButton deleteButton;
+    private CloseButton closeButton;
     private TaskTableModel model;
     private DefaultComboBoxModel comboBoxModel;
     private ArrayList<String> types;
+    private Task task;
+    private int index;
 
-    public CreateNewTaskGUI(TaskTableModel model) {
+    public TaskGUI(TaskTableModel model, int index) {
+        this.index=index;
+        task= model.gettasklist().get(index);
         setContentPane(contentPane);
-        //contentPane.setBorder(BorderFactory.createLineBorder(Constants.TINTEDGRAY));
         //default size would cut the hidden fields when shown unless we explicitly make the window bigger
         setMinimumSize(new Dimension(330,330));
         setResizable(false);
@@ -54,13 +57,36 @@ public class CreateNewTaskGUI extends JDialog {
         comboBoxModel();
         //hides an input field until togglebutton is pressed
         defaultButtons();
+        //shows data from the selected task
+        loadData();
         pack();
+    }
+
+    private void loadData() {
+        this.textFieldName.setText(task.getName());
+        this.textAreaDetails.setText(task.getDetails());
+        this.sliderPriority.setValue(task.getPriority());
+        this.comboBoxType.setSelectedItem(task.getType());
+        this.spinnerDate.setValue(task.getDate());
+
+        boolean habit = task instanceof Habit;
+        if (habit) {
+            showRepeat(true);
+            this.spinnerRepeat.setValue(((Habit)task).getRepeatEveryX());
+        }
     }
 
     private void defaultButtons() {
         showRepeat(false);
         toggleButtonHabit();
         okCancelButtons();
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.remove(index);
+                dispose();
+            }
+        });
     }
 
     //preparing a model for the combobox so we can both load the existing types + add new ones
@@ -129,7 +155,8 @@ public class CreateNewTaskGUI extends JDialog {
     private void onOK() {
         // adds task to the model
         Task newTask = receiveInput();
-        model.add(newTask);
+        task = newTask;
+        model.fireTableRowsUpdated(index,index);
         dispose();
     }
 
@@ -165,6 +192,12 @@ public class CreateNewTaskGUI extends JDialog {
         dispose();
     }
     private void okCancelButtons() {
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
