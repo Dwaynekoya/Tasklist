@@ -43,6 +43,7 @@ public class MainGUIWindow extends JFrame  {
         new MainGUIWindowControl(this);
     }
 
+
     //VISUAL ADJUSTMENTS
     private void customMenuBar() {
         JMenu[] menus = {dateMenu, listMenu};

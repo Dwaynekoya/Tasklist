@@ -37,12 +37,6 @@
               <vspacer id="a04d6">
                 <constraints/>
               </vspacer>
-              <component id="d3910" class="javax.swing.JMenuItem" binding="arrangeMenuItem">
-                <constraints/>
-                <properties>
-                  <text resource-bundle="text" key="arrange"/>
-                </properties>
-              </component>
             </children>
           </grid>
           <grid id="9b533" class="javax.swing.JMenu" binding="dateMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
@@ -93,6 +87,7 @@
         <constraints border-constraint="Center"/>
         <properties>
           <background color="-1"/>
+          <font name="Roboto"/>
         </properties>
         <border type="none"/>
         <children>
@@ -147,7 +142,9 @@
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <visible value="false"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>
@@ -155,7 +152,9 @@
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <visible value="false"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>

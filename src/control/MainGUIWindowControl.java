@@ -35,6 +35,17 @@ public class MainGUIWindowControl implements ActionListener {
         this.taskTable.setModel(model);
         defaultOrderTable();
     }
+    /*
+    *  System.out.println("---FILTRAR---");
+            //si se pulsa filtrar mientras el campo nombre está vacio se muestran todos los elementos (filtro nulo)
+            if (txtNombre.getText().isEmpty()){
+                sorter.setRowFilter(null);
+            } else {
+                //RowFilter<ModeloTablaAlumnos, Integer> rf = RowFilter.regexFilter(txtNombre.getText(),0);
+                //si solo quiero que aparezcan los nombres exactos:
+                RowFilter<ModeloTablaAlumnos, Integer> rf = RowFilter.regexFilter("^"+txtNombre.getText()+"$",0);
+                sorter.setRowFilter(rf);
+            }*/
 
     private void defaultOrderTable() {
         sorter=new TableRowSorter<TaskTableModel>(this.model);
