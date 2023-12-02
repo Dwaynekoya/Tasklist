@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.LoginDialog">
   <grid id="cbd77" binding="contentPane" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="48" y="54" width="436" height="297"/>
+      <xy x="48" y="54" width="626" height="298"/>
     </constraints>
     <properties>
       <background color="-1"/>
@@ -11,7 +11,7 @@
       <color color="-1579033"/>
     </border>
     <children>
-      <grid id="e3588" layout-manager="GridLayoutManager" row-count="6" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="e3588" layout-manager="GridLayoutManager" row-count="7" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="Center"/>
         <properties>
@@ -56,6 +56,7 @@
             <properties>
               <enabled value="false"/>
               <font name="Roboto" size="18"/>
+              <foreground color="-16749193"/>
               <text resource-bundle="text" key="username"/>
             </properties>
           </component>
@@ -66,6 +67,7 @@
             <properties>
               <enabled value="false"/>
               <font name="Roboto" size="18"/>
+              <foreground color="-16749193"/>
               <text resource-bundle="text" key="password"/>
             </properties>
           </component>
@@ -76,6 +78,8 @@
             <properties>
               <enabled value="false"/>
               <font name="Roboto" size="24" style="1"/>
+              <foreground color="-16749193"/>
+              <opaque value="false"/>
               <text resource-bundle="text" key="login"/>
             </properties>
           </component>
@@ -87,7 +91,7 @@
           <grid id="9538f" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-1"/>
@@ -119,9 +123,21 @@
           </vspacer>
           <vspacer id="91167">
             <constraints>
-              <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
+          <component id="9521" class="javax.swing.JLabel" binding="wrongloginLabel">
+            <constraints>
+              <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Roboto" size="20"/>
+              <foreground color="-1745378"/>
+              <opaque value="false"/>
+              <text resource-bundle="text" key="wrongLogin"/>
+              <visible value="false"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <component id="aa21" class="javax.swing.JLabel" binding="image">

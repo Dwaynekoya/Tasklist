@@ -24,6 +24,7 @@ public class LoginDialog extends JDialog {
     private JLabel loginLabel;
     private JLabel usernamelabel;
     private JLabel passwordLabel;
+    private JLabel wrongloginLabel;
     private ArrayList<User> users;
 
     public LoginDialog() {
@@ -52,14 +53,11 @@ public class LoginDialog extends JDialog {
     private void styleTextFields() {
         textField1.setBorder(Constants.INPUTBORDER);
         passwordField1.setBorder(Constants.INPUTBORDER);
-        textField1.setForeground(Constants.DARKMAINCOLOR);
-        passwordField1.setForeground(Constants.DARKMAINCOLOR);
     }
 
     private void onOK() {
         // checks that user exists
         checkUser();
-        dispose();
     }
 
     private void checkUser() {
@@ -75,6 +73,7 @@ public class LoginDialog extends JDialog {
             dispose();
         } else {
             System.out.println("One or more of the fields are wrong.");
+            wrongloginLabel.setVisible(true);
         }
     }
 
