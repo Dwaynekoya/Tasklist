@@ -3,7 +3,6 @@ package view;
 import control.Constants;
 import control.FileManagement;
 import model.User;
-import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
@@ -11,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LoginDialog extends JDialog {
     private JPanel contentPane;
@@ -25,6 +25,7 @@ public class LoginDialog extends JDialog {
     private JLabel usernamelabel;
     private JLabel passwordLabel;
     private JLabel wrongloginLabel;
+    private JButton registerButton;
     private ArrayList<User> users;
 
     public LoginDialog() {
@@ -37,6 +38,7 @@ public class LoginDialog extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         buttonOKCancel();
         setMinimumSize(new Dimension(500,getHeight()));
+        readUserList();
         pack();
         setLocationRelativeTo(null);
 
@@ -61,20 +63,22 @@ public class LoginDialog extends JDialog {
     }
 
     private void checkUser() {
-        readUserList();
         User user = readUserInput();
         if (users.contains(user)) {
-            System.out.println("---LOGGING IN---");
-            try {
-                new MainGUIWindow().setVisible(true);
-            } catch (IOException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
+            User found = users.get(users.indexOf(user));
+            if (Arrays.equals(found.getPassword(), user.getPassword())){
+                System.out.println("---LOGGING IN---");
+                try {
+                    new MainGUIWindow().setVisible(true);
+                } catch (IOException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                dispose();
             }
-            dispose();
-        } else {
-            System.out.println("One or more of the fields are wrong.");
-            wrongloginLabel.setVisible(true);
         }
+        System.out.println("One or more of the fields are wrong.");
+        wrongloginLabel.setVisible(true);
+
     }
 
     private User readUserInput() {
@@ -88,9 +92,10 @@ public class LoginDialog extends JDialog {
         users=new ArrayList<>();
         if (Constants.USERFILE.exists()) users = FileManagement.loadFile(Constants.USERFILE);
         //test
-        User admin = new User("admin", "admin".toCharArray());
-        users.add(admin);
+        //User admin = new User("admin", "admin".toCharArray());
+        //users.add(admin);
         //final app would have a register option
+        //FileManagement.saveFile(users,Constants.USERFILE);
     }
 
     private void onCancel() {
@@ -108,8 +113,17 @@ public class LoginDialog extends JDialog {
         // TODO: place custom component creation code here
         titleBar=new CustomTitleBar(this);
     }
+    private void registerUser() {
+        new RegisterDialog(users).setVisible(true);
+    }
     private void buttonOKCancel() {
         //own closeButton: closes the app, same as the cancel button
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registerUser();
+            }
+        });
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

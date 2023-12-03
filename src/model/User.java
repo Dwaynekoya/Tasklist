@@ -33,9 +33,7 @@ public class User implements Serializable {
         if (obj instanceof User){
             String objName = ((User) obj).getUsername();
             char[] objPassword = ((User) obj).getPassword();
-            if (this.username.equals(objName) && Arrays.equals(this.password, objPassword)) {
-                return true;
-            }
+            return this.username.equals(objName);
         }
         return false;
     }
