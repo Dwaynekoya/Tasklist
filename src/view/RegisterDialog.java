@@ -19,6 +19,7 @@ public class RegisterDialog extends JDialog {
     private JPasswordField passwordField;
     private CustomTitleBar customTitleBar;
     private JTextField textField;
+    private JLabel userExists;
     private ArrayList<User> users;
 
     public RegisterDialog(ArrayList<User> users) {
@@ -47,6 +48,7 @@ public class RegisterDialog extends JDialog {
             FileManagement.saveFile(users, Constants.USERFILE);
             dispose();
         }
+        userExists.setVisible(true);
         System.out.println("User already exists.");
     }
 

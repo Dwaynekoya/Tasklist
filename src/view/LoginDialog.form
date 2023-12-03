@@ -98,27 +98,30 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="e7465" class="javax.swing.JButton" binding="buttonOK">
+              <component id="e7465" class="javax.swing.JButton" binding="buttonOK" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8141378"/>
                   <text value="OK"/>
                 </properties>
               </component>
-              <component id="5723f" class="javax.swing.JButton" binding="buttonCancel">
+              <component id="5723f" class="javax.swing.JButton" binding="buttonCancel" custom-create="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8141378"/>
                   <text value="Cancel"/>
                 </properties>
               </component>
-              <component id="1cb16" class="javax.swing.JButton" binding="registerButton" default-binding="true">
+              <component id="1cb16" class="javax.swing.JButton" binding="registerButton" custom-create="true" default-binding="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8141378"/>
                   <text resource-bundle="text" key="register"/>
                 </properties>
               </component>

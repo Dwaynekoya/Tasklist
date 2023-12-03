@@ -132,6 +132,14 @@ public class MainGUIWindow extends JFrame  {
         return tomorrowMenuItem;
     }
 
+    public JMenuItem getShowAll1() {
+        return showAll1;
+    }
+
+    public JMenuItem getShowAll2() {
+        return showAll2;
+    }
+
     @Override
     public JPanel getContentPane() {
         return contentPane;

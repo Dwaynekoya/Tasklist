@@ -80,17 +80,13 @@ public class MainGUIWindowControl implements ActionListener {
         //MNEMONIC
         window.getFilterMenuItem().setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK));
         window.getChangeDateMenuItem().setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Event.CTRL_MASK));
+        window.getShowAll1().setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, Event.CTRL_MASK));
+        window.getShowAll2().setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, Event.CTRL_MASK));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
-        /*
-        ("filter");
-        ("today");
-        ("yesterday");
-        ("tomorrow");
-        ("changedate");*/
         SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TABLEDATEFORMAT);
         switch (actionCommand){
             case "add":

@@ -3,6 +3,7 @@ package view;
 import control.Constants;
 import control.FileManagement;
 import model.User;
+import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
@@ -76,9 +77,8 @@ public class LoginDialog extends JDialog {
                 dispose();
             }
         }
-        System.out.println("One or more of the fields are wrong.");
+        //System.out.println("One or more of the fields are wrong.");
         wrongloginLabel.setVisible(true);
-
     }
 
     private User readUserInput() {
@@ -102,16 +102,11 @@ public class LoginDialog extends JDialog {
         dispose();
     }
 
-    public static void main(String[] args) {
-        LoginDialog dialog = new LoginDialog();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
-
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         titleBar=new CustomTitleBar(this);
+        registerButton=new ColoredButton(Constants.TEXTBUNDLE.getString("register"));
+        buttonOK=new ColoredButton(Constants.TEXTBUNDLE.getString("ok"));
+        buttonCancel=new ColoredButton(Constants.TEXTBUNDLE.getString("cancel"));
     }
     private void registerUser() {
         new RegisterDialog(users).setVisible(true);
@@ -157,4 +152,5 @@ public class LoginDialog extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
+
 }
