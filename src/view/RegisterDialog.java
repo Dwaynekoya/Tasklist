@@ -7,6 +7,8 @@ import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -22,8 +24,10 @@ public class RegisterDialog extends JDialog {
     public RegisterDialog(ArrayList<User> users) {
         this.users=users;
         setContentPane(contentPane);
+        contentPane.setBorder(new LineBorder(Constants.DARKCONTRASTCOLOR));
         setUndecorated(true);
         setModal(true);
+        setMinimumSize(new Dimension(200,150));
         getRootPane().setDefaultButton(buttonOK);
         styleTextFields();
         okCancelbuttons();

@@ -23,5 +23,4 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
-    //http://www.java2s.com/Tutorial/Java/0240__Swing/MenuAccelerator.htm
 }
