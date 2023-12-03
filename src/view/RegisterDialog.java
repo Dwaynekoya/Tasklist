@@ -28,7 +28,7 @@ public class RegisterDialog extends JDialog {
         contentPane.setBorder(new LineBorder(Constants.DARKCONTRASTCOLOR));
         setUndecorated(true);
         setModal(true);
-        setMinimumSize(new Dimension(200,150));
+        setMinimumSize(Constants.MINIWINDOW);
         getRootPane().setDefaultButton(buttonOK);
         styleTextFields();
         okCancelbuttons();

@@ -24,7 +24,7 @@ public class ChangeDateDialog extends JDialog {
     public ChangeDateDialog(MainGUIWindowControl windowControl) {
         this.windowControl =windowControl;
         setContentPane(contentPane);
-        setMinimumSize(new Dimension(getWidth(),100));
+        setMinimumSize(Constants.MINIWINDOW);
         setModal(true);
         setUndecorated(true);
         setLocationRelativeTo(null);

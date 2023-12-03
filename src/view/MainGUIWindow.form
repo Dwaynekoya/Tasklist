@@ -106,7 +106,9 @@
           <component id="d679" class="javax.swing.JTable" binding="taskTable" default-binding="true">
             <constraints/>
             <properties>
-              <gridColor color="-460552"/>
+              <gridColor color="-1"/>
+              <selectionBackground color="-8750"/>
+              <selectionForeground color="-13947600"/>
             </properties>
           </component>
         </children>

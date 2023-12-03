@@ -27,7 +27,7 @@ public class FilterDialog extends JDialog {
         setModal(true);
         setUndecorated(true);
         setLocationRelativeTo(null);
-        setMinimumSize(new Dimension(getWidth()+20,getHeight()+20));
+        setMinimumSize(Constants.MINIWINDOW);
         contentPane.setBorder(BorderFactory.createLineBorder(Constants.DARKCONTRASTCOLOR));
         getRootPane().setDefaultButton(buttonOK);
         okCancelButtons();
