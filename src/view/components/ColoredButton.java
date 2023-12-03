@@ -18,6 +18,9 @@ public class ColoredButton extends JButton {
         setBackground(mainColor);
         setBorderPainted(false);
         //setBorder(BorderFactory.createLineBorder(Color.WHITE));
+    }
 
+    public void changeColor(Color darkcontrastcolor) {
+        setBackground(darkcontrastcolor);
     }
 }

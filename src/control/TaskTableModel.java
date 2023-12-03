@@ -78,7 +78,7 @@ public class TaskTableModel extends AbstractTableModel {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.TABLEDATEFORMAT);
                 return simpleDateFormat.format(task.getDate());
             case 4:
-                btnDone=new JToggleButton(Constants.TEXTBUNDLE.getString("no"));
+                /*btnDone=new JToggleButton(Constants.TEXTBUNDLE.getString("no"));
                 btnDone.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -88,33 +88,39 @@ public class TaskTableModel extends AbstractTableModel {
                     }
                 });
                 if (task.isDone()) btnDone.isSelected();
-                return btnDone;
+                return btnDone;*/
+                return task.isDone();
         }
         return null;
     }
-
+//only used for the checkbox in done column
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Task Task = tasklist.get(rowIndex);
-        switch (columnIndex){
+        Task.setDone((Boolean)aValue);
+        /*switch (columnIndex){
             case 0: Task.setName((String) aValue);break;
-            //TODO : combobox?
             case 1: Task.setType((String) aValue);break;
-            //TODO: spinner?
             case 2: Task.setPriority((Integer) aValue);break;
-            //TODO: togglebutton?
             case 3: ;break;
-        }
+            case 4: Task.setDone((Boolean)aValue);break;
+        }*/
 
         this.fireTableCellUpdated(rowIndex,columnIndex);
         this.fireTableRowsUpdated(rowIndex,rowIndex);
     }
-    //para permitir editar celdas
+//this will show the cell for DONE? as a checkbox :)
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        if (columnIndex==4) return Boolean.class;
+        return super.getColumnClass(columnIndex);
+    }
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         //TODO: toquetear esto para poner los componentes custom
 //        Task task = getTask(rowIndex);
+        if (columnIndex==4) return true;
         new TaskGUI(this, rowIndex).setVisible(true);
         return false;
     }

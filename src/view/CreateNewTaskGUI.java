@@ -5,6 +5,7 @@ import control.FileManagement;
 import control.TaskTableModel;
 import model.Habit;
 import model.Task;
+import view.components.CloseButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
@@ -33,6 +34,7 @@ public class CreateNewTaskGUI extends JDialog {
     private JToggleButton toggleHabit;
     private CustomTitleBar customTitleBar1;
     private JLabel daysLabel;
+    private CloseButton closeButton;
     private TaskTableModel model;
     private DefaultComboBoxModel comboBoxModel;
     private ArrayList<String> types;
@@ -165,6 +167,12 @@ public class CreateNewTaskGUI extends JDialog {
         dispose();
     }
     private void okCancelButtons() {
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onCancel();
+            }
+        });
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();

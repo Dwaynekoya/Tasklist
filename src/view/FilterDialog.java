@@ -2,58 +2,58 @@ package view;
 
 import control.Constants;
 import control.MainGUIWindowControl;
+import view.components.CloseButton;
 import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
-public class ChangeDateDialog extends JDialog {
+public class FilterDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JSpinner spinnerDate;
+    private JTextArea textArea;
+    private JRadioButton radioButtonName;
+    private JRadioButton radioButtonType;
     private CustomTitleBar customTitleBar;
-    private JButton closeButton;
+    private CloseButton closeButton;
     private MainGUIWindowControl windowControl;
 
-    public ChangeDateDialog(MainGUIWindowControl windowControl) {
-        this.windowControl =windowControl;
+    public FilterDialog(MainGUIWindowControl windowControl) {
+        this.windowControl=windowControl;
         setContentPane(contentPane);
-        setMinimumSize(new Dimension(getWidth(),100));
         setModal(true);
         setUndecorated(true);
         setLocationRelativeTo(null);
+        setMinimumSize(new Dimension(getWidth()+20,getHeight()+20));
         contentPane.setBorder(BorderFactory.createLineBorder(Constants.DARKCONTRASTCOLOR));
         getRootPane().setDefaultButton(buttonOK);
-        spinnerDateFormat();
         okCancelButtons();
+        textArea.setBorder(Constants.INPUTBORDER);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(radioButtonName);
+        buttonGroup.add(radioButtonType);
         pack();
     }
-    private void spinnerDateFormat() {
-        //modelo para que el spinner sea de fechas:
-        //spinnerFecha.setModel(new SpinnerDateModel());
-        Date datenow = Calendar.getInstance().getTime();
-        //SpinnerDateModel smb = new SpinnerDateModel(datenow, null, null, Calendar.HOUR_OF_DAY);
-        SpinnerDateModel smb = new SpinnerDateModel();
-        spinnerDate.setModel(smb);
-        JSpinner.DateEditor d = new JSpinner.DateEditor(spinnerDate, Constants.DATEFORMAT);
-        spinnerDate.setEditor(d);
-        spinnerDate.setValue(datenow);
-    }
+
+
+
     private void onOK() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TABLEDATEFORMAT);
-        windowControl.changeFilter(dateFormat.format(spinnerDate.getValue()),3);
+        // add your code here
+        int index=0;
+        if (radioButtonType.isSelected()) index=1;
+        windowControl.changeFilter(textArea.getText(), index);
         dispose();
     }
 
     private void onCancel() {
+        // add your code here if necessary
         dispose();
     }
+
+
     private void okCancelButtons() {
         closeButton.addActionListener(new ActionListener() {
             @Override
@@ -92,5 +92,6 @@ public class ChangeDateDialog extends JDialog {
         customTitleBar=new CustomTitleBar(this);
         buttonOK=new ColoredButton(Constants.TEXTBUNDLE.getString("ok"));
         buttonCancel=new ColoredButton(Constants.TEXTBUNDLE.getString("cancel"));
+        ((ColoredButton)buttonCancel).changeColor(Constants.DARKCONTRASTCOLOR);
     }
 }

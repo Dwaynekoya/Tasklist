@@ -29,12 +29,12 @@ public class TaskGUI extends JDialog {
     private JSpinner spinnerDate;
     private JLabel labelRepeat;
     private JToggleButton toggleHabit;
-    private CustomTitleBar customTitleBar1;
+    private CustomTitleBar customTitleBar;
     private JLabel daysLabel;
     private JButton deleteButton;
     private CloseButton closeButton;
     private JToggleButton toggleDone;
-    private TaskTableModel model;
+    private final TaskTableModel model;
     private DefaultComboBoxModel comboBoxModel;
     private ArrayList<String> types;
     private Task task;
@@ -69,26 +69,32 @@ public class TaskGUI extends JDialog {
         this.sliderPriority.setValue(task.getPriority());
         this.comboBoxType.setSelectedItem(task.getType());
         this.spinnerDate.setValue(task.getDate());
+        this.toggleDone.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (toggleDone.isSelected()) {
+                    toggleDone.setText(Constants.TEXTBUNDLE.getString("yes"));
+                }else {toggleDone.setText(Constants.TEXTBUNDLE.getString("no"));}
+            }
+        });
 
         boolean habit = task instanceof Habit;
         if (habit) {
             showRepeat(true);
             toggleHabit.setSelected(true);
+            toggleHabit.setText(Constants.TEXTBUNDLE.getString("yes"));
             this.spinnerRepeat.setValue(((Habit)task).getRepeatEveryX());
         }
-        if (task.isDone()) toggleDone.setSelected(true);
+        if (task.isDone()) toggleDone.setSelected(true); toggleDone.setText(Constants.TEXTBUNDLE.getString("yes"));
     }
 
     private void defaultButtons() {
         showRepeat(false);
         toggleButtonHabit();
         okCancelButtons();
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.remove(index);
-                dispose();
-            }
+        deleteButton.addActionListener(e -> {
+            model.remove(index);
+            dispose();
         });
     }
 
@@ -232,7 +238,6 @@ public class TaskGUI extends JDialog {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
-        customTitleBar1=new CustomTitleBar(this);
+        customTitleBar =new CustomTitleBar(this);
     }
 }

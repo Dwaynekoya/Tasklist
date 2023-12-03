@@ -16,7 +16,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="3aa64" class="view.components.CloseButton">
+          <component id="3aa64" class="view.components.CloseButton" binding="closeButton">
             <constraints border-constraint="East"/>
             <properties/>
           </component>

@@ -1,10 +1,7 @@
 package control;
 
 import model.Task;
-import view.ChangeDateDialog;
-import view.CreateNewTaskGUI;
-import view.MainGUIWindow;
-import view.TaskGUI;
+import view.*;
 
 import javax.swing.*;
 import javax.swing.table.TableRowSorter;
@@ -96,6 +93,9 @@ public class MainGUIWindowControl implements ActionListener {
         switch (actionCommand){
             case "add":
                 new CreateNewTaskGUI(model).setVisible(true);
+                break;
+            case "filter":
+                new FilterDialog(this).setVisible(true);
                 break;
             case "remove":
                 //TODO:REMOVE

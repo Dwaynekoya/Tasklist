@@ -13,12 +13,10 @@ public class Main {
             UIManager.getLookAndFeelDefaults()
                     .put("defaultFont", new Font("Roboto", Font.PLAIN, 14));
             //TODO: Splash screen?
-            //new LoginDialog().setVisible(true);
-            new MainGUIWindow().setVisible(true);
+            new LoginDialog().setVisible(true);
+            //new MainGUIWindow().setVisible(true);
         } catch ( ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

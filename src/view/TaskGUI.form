@@ -11,7 +11,7 @@
       <color color="-1579033"/>
     </border>
     <children>
-      <grid id="534a2" class="view.components.CustomTitleBar" binding="customTitleBar1" custom-create="true" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="534a2" class="view.components.CustomTitleBar" binding="customTitleBar" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="North"/>
         <properties/>
         <border type="none"/>
