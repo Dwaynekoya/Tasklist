@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 //table model for the tasklist
 
@@ -74,6 +75,9 @@ public class TaskTableModel extends AbstractTableModel {
             //https://stackoverflow.com/questions/21845768/how-to-set-toggle-button-text-value-from-db-on-jtable
             //https://stackoverflow.com/questions/7350445/how-do-i-get-the-cellrow-when-there-is-an-itemevent-in-the-jcombobox-within-the/7356518#7356518
             case 3:
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.TABLEDATEFORMAT);
+                return simpleDateFormat.format(task.getDate());
+            case 4:
                 btnDone=new JToggleButton(Constants.TEXTBUNDLE.getString("no"));
                 btnDone.addActionListener(new ActionListener() {
                     @Override

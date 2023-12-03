@@ -73,8 +73,10 @@ public class TaskGUI extends JDialog {
         boolean habit = task instanceof Habit;
         if (habit) {
             showRepeat(true);
+            toggleHabit.setSelected(true);
             this.spinnerRepeat.setValue(((Habit)task).getRepeatEveryX());
         }
+        if (task.isDone()) toggleDone.setSelected(true);
     }
 
     private void defaultButtons() {
@@ -157,6 +159,7 @@ public class TaskGUI extends JDialog {
         // adds task to the model
         Task newTask = receiveInput();
         task = newTask;
+        //TODO: no funca
         model.fireTableRowsUpdated(index,index);
         dispose();
     }

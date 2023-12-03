@@ -37,6 +37,12 @@
               <vspacer id="a04d6">
                 <constraints/>
               </vspacer>
+              <component id="789ed" class="javax.swing.JMenuItem" binding="showAll1">
+                <constraints/>
+                <properties>
+                  <text resource-bundle="text" key="showall"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="9b533" class="javax.swing.JMenu" binding="dateMenu" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
@@ -77,6 +83,12 @@
                 <properties>
                   <selected value="false"/>
                   <text resource-bundle="text" key="changeDate"/>
+                </properties>
+              </component>
+              <component id="13d49" class="javax.swing.JMenuItem" binding="showAll2">
+                <constraints/>
+                <properties>
+                  <text resource-bundle="text" key="showall"/>
                 </properties>
               </component>
             </children>

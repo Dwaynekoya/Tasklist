@@ -3,6 +3,7 @@ package control;
 import model.Task;
 import view.CreateNewTaskGUI;
 import view.MainGUIWindow;
+import view.TaskGUI;
 
 import javax.swing.*;
 import javax.swing.table.TableRowSorter;
@@ -35,18 +36,14 @@ public class MainGUIWindowControl implements ActionListener {
         this.taskTable.setModel(model);
         defaultOrderTable();
     }
-    /*
-    *  System.out.println("---FILTRAR---");
-            //si se pulsa filtrar mientras el campo nombre está vacio se muestran todos los elementos (filtro nulo)
-            if (txtNombre.getText().isEmpty()){
-                sorter.setRowFilter(null);
-            } else {
-                //RowFilter<ModeloTablaAlumnos, Integer> rf = RowFilter.regexFilter(txtNombre.getText(),0);
-                //si solo quiero que aparezcan los nombres exactos:
-                RowFilter<ModeloTablaAlumnos, Integer> rf = RowFilter.regexFilter("^"+txtNombre.getText()+"$",0);
-                sorter.setRowFilter(rf);
-            }*/
 
+    private void changeFilter(String regex, int index){
+        RowFilter<TaskTableModel, Integer> rf = RowFilter.regexFilter(regex,index);
+        sorter.setRowFilter(rf);
+    }
+    private void removeFilter(){
+        sorter.setRowFilter(null);
+    }
     private void defaultOrderTable() {
         sorter=new TableRowSorter<TaskTableModel>(this.model);
         ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
@@ -64,6 +61,7 @@ public class MainGUIWindowControl implements ActionListener {
         this.addBttn = window.getAddBttn();
         this.removeBttn = window.getRemoveBttn();
         this.menuBar=window.getMyMenuBar();
+        configMenuListeners();
         this.closeButton=window.getCloseButton();
         //setting action commands here
         this.addBttn.setActionCommand("add");
@@ -73,9 +71,21 @@ public class MainGUIWindowControl implements ActionListener {
         this.closeButton.addActionListener(this);
     }
 
+    private void configMenuListeners() {
+        for (JMenuItem item: window.getMenuItems()){
+            item.addActionListener(this);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
+        /*
+        ("filter");
+        ("today");
+        ("yesterday");
+        ("tomorrow");
+        ("changedate");*/
         switch (actionCommand){
             case "add":
                 new CreateNewTaskGUI(model).setVisible(true);
@@ -88,6 +98,9 @@ public class MainGUIWindowControl implements ActionListener {
                 ArrayList tasks = model.gettasklist();
                 FileManagement.saveFile(tasks, Constants.TASKFILE);
                 System.exit(0);
+                break;
+            case "showall":
+                removeFilter();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + actionCommand);

@@ -13,6 +13,7 @@ public class Constants {
     public static final String[] DEFAULLT_COLUMNS = {TEXTBUNDLE.getString("name"),
             TEXTBUNDLE.getString("type"),
             TEXTBUNDLE.getString("priority"),
+            TEXTBUNDLE.getString("date"),
             TEXTBUNDLE.getString("done")
     };
     //serializable file for tasks
@@ -25,6 +26,7 @@ public class Constants {
     //serializable file for USERS:
     public static final File USERFILE = new File("./users.ser");
     public static final String DATEFORMAT= "dd/MM/yyyy";
+    public static final String TABLEDATEFORMAT= "dd MMMM yyyy";
     //Colors:
     public static final Color MAINCOLOR = new Color(131,197,190);
     public static final Color DARKMAINCOLOR = new Color(0,109,119);

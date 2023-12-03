@@ -2,19 +2,17 @@ package view;
 
 import control.Constants;
 import control.MainGUIWindowControl;
-import control.TaskTableModel;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import view.components.*;
 
 import static control.Constants.MAINCOLOR;
-import static java.awt.Color.CYAN;
-import static java.awt.Color.YELLOW;
 
 public class MainGUIWindow extends JFrame  {
     //view with a table, menu bar with sorting/filtering options and buttons to add/remove tasks
@@ -28,6 +26,8 @@ public class MainGUIWindow extends JFrame  {
     private JMenuItem changeDateMenuItem;
     private JMenu dateMenu;
     private JMenuItem todayMenuItem,yesterdayMenuItem,tomorrowMenuItem;
+    private JMenuItem showAll1;
+    private JMenuItem showAll2;
     private JButton closeButton;
 
     public MainGUIWindow() throws HeadlessException, IOException, ClassNotFoundException {
@@ -39,6 +39,7 @@ public class MainGUIWindow extends JFrame  {
         setUndecorated(true);
         customMenuBar();
         setJMenuBar(menuBar);
+        actionCommands();
         //controller for the logic parts of the window
         new MainGUIWindowControl(this);
     }
@@ -60,6 +61,17 @@ public class MainGUIWindow extends JFrame  {
         menuBar.setBorder(new LineBorder(MAINCOLOR));
         customButtons();
     }
+
+    private void actionCommands() {
+        filterMenuItem.setActionCommand("filter");
+        todayMenuItem.setActionCommand("today");
+        yesterdayMenuItem.setActionCommand("yesterday");
+        tomorrowMenuItem.setActionCommand("tomorrow");
+        changeDateMenuItem.setActionCommand("changedate");
+        showAll1.setActionCommand("showall");
+        showAll2.setActionCommand("showall");
+    }
+
     private void customButtons() {
        /* addBttn = new ColoredButton();
         addBttn.setText("ADD");
@@ -83,6 +95,11 @@ public class MainGUIWindow extends JFrame  {
     }
 
     //GETTERS-> used in Control class
+    public JMenuItem[] getMenuItems(){
+        JMenuItem[] items ={filterMenuItem,showAll1,todayMenuItem,yesterdayMenuItem,
+        tomorrowMenuItem,changeDateMenuItem,showAll2};
+        return items;
+    }
     public JButton getCloseButton() {
         return closeButton;
     }
