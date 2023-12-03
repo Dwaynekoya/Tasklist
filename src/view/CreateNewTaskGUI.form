@@ -13,7 +13,9 @@
     <children>
       <grid id="534a2" class="view.components.CustomTitleBar" binding="customTitleBar1" custom-create="true" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="North"/>
-        <properties/>
+        <properties>
+          <background color="-8750"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="3aa64" class="view.components.CloseButton" binding="closeButton">
@@ -226,21 +228,25 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="e7465" class="javax.swing.JButton" binding="buttonOK">
+              <component id="e7465" class="javax.swing.JButton" binding="buttonOK" custom-create="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-1927816"/>
                   <font name="Roboto"/>
+                  <foreground color="-1"/>
                   <text value="OK"/>
                 </properties>
               </component>
-              <component id="5723f" class="javax.swing.JButton" binding="buttonCancel">
+              <component id="5723f" class="javax.swing.JButton" binding="buttonCancel" custom-create="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-1927816"/>
                   <font name="Roboto"/>
+                  <foreground color="-1"/>
                   <text value="Cancel"/>
                 </properties>
               </component>

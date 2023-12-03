@@ -6,6 +6,7 @@ import control.TaskTableModel;
 import model.Habit;
 import model.Task;
 import view.components.CloseButton;
+import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
@@ -203,7 +204,8 @@ public class CreateNewTaskGUI extends JDialog {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         customTitleBar1=new CustomTitleBar(this);
+        buttonOK=new ColoredButton(Constants.TEXTBUNDLE.getString("ok"));
+        buttonCancel=new ColoredButton(Constants.TEXTBUNDLE.getString("cancel"));
     }
 }

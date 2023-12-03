@@ -18,7 +18,7 @@ import java.util.Date;
 public class MainGUIWindowControl implements ActionListener {
     private MainGUIWindow window;
     //buttons
-    private JButton addBttn, removeBttn;
+    private JButton addBttn;
     private TaskTableModel model;
     private JTable taskTable;
     private TableRowSorter<TaskTableModel> sorter;
@@ -62,15 +62,12 @@ public class MainGUIWindowControl implements ActionListener {
         //accesing elements through getters
         this.taskTable = window.getTaskTable();
         this.addBttn = window.getAddBttn();
-        this.removeBttn = window.getRemoveBttn();
         this.menuBar=window.getMyMenuBar();
         configMenuListeners();
         this.closeButton=window.getCloseButton();
         //setting action commands here
         this.addBttn.setActionCommand("add");
-        this.removeBttn.setActionCommand("remove");
         this.addBttn.addActionListener(this);
-        this.removeBttn.addActionListener(this);
         this.closeButton.addActionListener(this);
     }
 
@@ -96,10 +93,6 @@ public class MainGUIWindowControl implements ActionListener {
                 break;
             case "filter":
                 new FilterDialog(this).setVisible(true);
-                break;
-            case "remove":
-                //TODO:REMOVE
-
                 break;
             case "close":
                 ArrayList tasks = model.gettasklist();

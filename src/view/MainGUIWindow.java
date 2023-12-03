@@ -15,9 +15,9 @@ import view.components.*;
 import static control.Constants.MAINCOLOR;
 
 public class MainGUIWindow extends JFrame  {
-    //view with a table, menu bar with sorting/filtering options and buttons to add/remove tasks
+    //view with a table, menu bar with sorting/filtering options and button to add tasks
     private JPanel contentPane;
-    private JButton removeBttn, addBttn;
+    private JButton addBttn;
     private JTable taskTable;
     private JMenuBar menuBar;
     private JMenu listMenu;
@@ -75,9 +75,6 @@ public class MainGUIWindow extends JFrame  {
 
     private void customButtons() {
         addBttn = new ColoredButton(Constants.TEXTBUNDLE.getString("add"));
-        removeBttn = new ColoredButton(Constants.TEXTBUNDLE.getString("remove"));
-        addBttn.setFont(new Font("Roboto", Font.PLAIN, 40));
-        removeBttn.setFont(new Font("Roboto", Font.PLAIN, 40));
     }
 
     //GETTERS-> used in Control class
@@ -94,9 +91,7 @@ public class MainGUIWindow extends JFrame  {
         return menuBar;
     }
 
-    public JButton getRemoveBttn() {
-        return removeBttn;
-    }
+
 
     public JButton getAddBttn() {
         return addBttn;

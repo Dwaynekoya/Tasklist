@@ -74,6 +74,10 @@ public class TaskGUI extends JDialog {
             public void stateChanged(ChangeEvent e) {
                 if (toggleDone.isSelected()) {
                     toggleDone.setText(Constants.TEXTBUNDLE.getString("yes"));
+                    if (task instanceof Habit){
+                        Habit newHabit = new Habit((Habit)task);
+                        model.add(task);
+                    }
                 }else {toggleDone.setText(Constants.TEXTBUNDLE.getString("no"));}
             }
         });

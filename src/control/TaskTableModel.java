@@ -1,5 +1,6 @@
 package control;
 
+import model.Habit;
 import model.Task;
 import view.TaskGUI;
 
@@ -98,6 +99,10 @@ public class TaskTableModel extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         Task Task = tasklist.get(rowIndex);
         Task.setDone((Boolean)aValue);
+        if (((Boolean) aValue)&& getTask(rowIndex) instanceof Habit){
+            Habit newHabit = new Habit((Habit)getTask(rowIndex));
+            add(newHabit);
+        }
         /*switch (columnIndex){
             case 0: Task.setName((String) aValue);break;
             case 1: Task.setType((String) aValue);break;
