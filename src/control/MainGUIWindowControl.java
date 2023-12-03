@@ -1,6 +1,7 @@
 package control;
 
 import model.Task;
+import view.ChangeDateDialog;
 import view.CreateNewTaskGUI;
 import view.MainGUIWindow;
 import view.TaskGUI;
@@ -10,7 +11,12 @@ import javax.swing.table.TableRowSorter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainGUIWindowControl implements ActionListener {
     private MainGUIWindow window;
@@ -37,7 +43,7 @@ public class MainGUIWindowControl implements ActionListener {
         defaultOrderTable();
     }
 
-    private void changeFilter(String regex, int index){
+    public void changeFilter(String regex, int index){
         RowFilter<TaskTableModel, Integer> rf = RowFilter.regexFilter(regex,index);
         sorter.setRowFilter(rf);
     }
@@ -86,6 +92,7 @@ public class MainGUIWindowControl implements ActionListener {
         ("yesterday");
         ("tomorrow");
         ("changedate");*/
+        SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.TABLEDATEFORMAT);
         switch (actionCommand){
             case "add":
                 new CreateNewTaskGUI(model).setVisible(true);
@@ -101,6 +108,20 @@ public class MainGUIWindowControl implements ActionListener {
                 break;
             case "showall":
                 removeFilter();
+                break;
+            case "today":
+                changeFilter(dateFormat.format(Date.from(Instant.now())), 3);
+                break;
+            case "yesterday":
+                Date yesterday = Date.from(LocalDate.now().minusDays(1).atStartOfDay().toInstant(ZoneOffset.UTC));
+                changeFilter(dateFormat.format(yesterday), 3);
+                break;
+            case "tomorrow":
+                Date tomorrow = Date.from(LocalDate.now().plusDays(1).atStartOfDay().toInstant(ZoneOffset.UTC));
+                changeFilter(dateFormat.format(tomorrow), 3);
+                break;
+            case "changedate":
+                new ChangeDateDialog(this).setVisible(true);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + actionCommand);

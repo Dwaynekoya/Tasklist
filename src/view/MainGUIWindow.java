@@ -57,6 +57,7 @@ public class MainGUIWindow extends JFrame  {
     private void createUIComponents() {
         // makes menubar use custom class: allows us to set the color + use it as the title bar
         this.menuBar=new ColoredMenuBar(this);
+        this.menuBar.setLayout(new BoxLayout(menuBar, BoxLayout.LINE_AXIS));
         ((ColoredMenuBar) menuBar).setBgColor(MAINCOLOR);
         menuBar.setBorder(new LineBorder(MAINCOLOR));
         customButtons();
@@ -73,23 +74,8 @@ public class MainGUIWindow extends JFrame  {
     }
 
     private void customButtons() {
-       /* addBttn = new ColoredButton();
-        addBttn.setText("ADD");
-        ((ColoredButton)addBttn).setMainColor(CYAN);
-        removeBttn = new ColoredButton();
-        removeBttn.setText("REMOVE");
-        ((ColoredButton)removeBttn).setMainColor(CYAN);*/
-        //int shape, int orientation, Color colorNormal, Color colorHighlighted, Color colorBorderNormal, Color colorBorderHighlighted
-        //addBttn = new OvalButton(OvalButton.SHAPE_CAPSULE,OvalButton.HORIZONTAL, CYAN, YELLOW, CYAN, YELLOW);
-        //addBttn.setText("ADD");
-        //((OvalButton)addBttn).setBorderThickness(0);
-        //((OvalButton)addBttn).setColorNormal(CYAN);
         addBttn = new ColoredButton(Constants.TEXTBUNDLE.getString("add"));
         removeBttn = new ColoredButton(Constants.TEXTBUNDLE.getString("remove"));
-        /*removeBttn = new OvalButton(OvalButton.SHAPE_CAPSULE,OvalButton.HORIZONTAL, CYAN, YELLOW, CYAN, YELLOW);
-        ((OvalButton)removeBttn).setBorderThickness(0);
-        removeBttn.setText("REMOVE");
-        ((OvalButton)removeBttn).setColorNormal(CYAN);*/
         addBttn.setFont(new Font("Roboto", Font.PLAIN, 40));
         removeBttn.setFont(new Font("Roboto", Font.PLAIN, 40));
     }
