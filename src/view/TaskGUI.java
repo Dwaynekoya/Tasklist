@@ -33,6 +33,7 @@ public class TaskGUI extends JDialog {
     private JLabel daysLabel;
     private JButton deleteButton;
     private CloseButton closeButton;
+    private JToggleButton toggleDone;
     private TaskTableModel model;
     private DefaultComboBoxModel comboBoxModel;
     private ArrayList<String> types;

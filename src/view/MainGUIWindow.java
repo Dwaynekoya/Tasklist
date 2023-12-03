@@ -73,10 +73,11 @@ public class MainGUIWindow extends JFrame  {
         //((OvalButton)addBttn).setBorderThickness(0);
         //((OvalButton)addBttn).setColorNormal(CYAN);
         addBttn = new ColoredButton(Constants.TEXTBUNDLE.getString("add"));
-        removeBttn = new OvalButton(OvalButton.SHAPE_CAPSULE,OvalButton.HORIZONTAL, CYAN, YELLOW, CYAN, YELLOW);
+        removeBttn = new ColoredButton(Constants.TEXTBUNDLE.getString("remove"));
+        /*removeBttn = new OvalButton(OvalButton.SHAPE_CAPSULE,OvalButton.HORIZONTAL, CYAN, YELLOW, CYAN, YELLOW);
         ((OvalButton)removeBttn).setBorderThickness(0);
         removeBttn.setText("REMOVE");
-        ((OvalButton)removeBttn).setColorNormal(CYAN);
+        ((OvalButton)removeBttn).setColorNormal(CYAN);*/
         addBttn.setFont(new Font("Roboto", Font.PLAIN, 40));
         removeBttn.setFont(new Font("Roboto", Font.PLAIN, 40));
     }
