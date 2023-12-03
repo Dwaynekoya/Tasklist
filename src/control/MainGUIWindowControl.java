@@ -5,8 +5,10 @@ import view.*;
 
 import javax.swing.*;
 import javax.swing.table.TableRowSorter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -75,6 +77,9 @@ public class MainGUIWindowControl implements ActionListener {
         for (JMenuItem item: window.getMenuItems()){
             item.addActionListener(this);
         }
+        //MNEMONIC
+        window.getFilterMenuItem().setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK));
+        window.getChangeDateMenuItem().setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Event.CTRL_MASK));
     }
 
     @Override

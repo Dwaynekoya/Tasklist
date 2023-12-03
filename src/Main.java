@@ -11,12 +11,11 @@ public class Main {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            Font defaultFont = Font.createFont(Font.TRUETYPE_FONT,new File("./Roboto-Regular.ttf"));
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(defaultFont);
+            //TODO: not working (font)
+            Font defaultFont = Font.createFont(Font.TRUETYPE_FONT,new File("./Koya-Regular.otf"));
+            defaultFont.deriveFont(Font.PLAIN,12);
             UIManager.getLookAndFeelDefaults()
                     .put("defaultFont", defaultFont);
-            //TODO: Splash screen?
             new LoginDialog().setVisible(true);
             //new MainGUIWindow().setVisible(true);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
@@ -24,4 +23,5 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
+    //http://www.java2s.com/Tutorial/Java/0240__Swing/MenuAccelerator.htm
 }
