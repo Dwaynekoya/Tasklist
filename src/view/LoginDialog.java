@@ -3,6 +3,7 @@ package view;
 import control.Constants;
 import control.FileManagement;
 import model.User;
+import view.components.CloseButton;
 import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
@@ -103,6 +104,7 @@ public class LoginDialog extends JDialog {
 
     private void createUIComponents() {
         titleBar=new CustomTitleBar(this);
+        closeButton=new CloseButton();
         registerButton=new ColoredButton(Constants.TEXTBUNDLE.getString("register"));
         buttonOK=new ColoredButton(Constants.TEXTBUNDLE.getString("ok"));
         buttonCancel=new ColoredButton(Constants.TEXTBUNDLE.getString("cancel"));
