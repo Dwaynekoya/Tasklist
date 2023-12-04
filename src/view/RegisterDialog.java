@@ -25,7 +25,7 @@ public class RegisterDialog extends JDialog {
     public RegisterDialog(ArrayList<User> users) {
         this.users=users;
         setContentPane(contentPane);
-        contentPane.setBorder(new LineBorder(Constants.DARKCONTRASTCOLOR));
+        contentPane.setBorder(Constants.DIALOGBORDER);
         setUndecorated(true);
         setModal(true);
         setMinimumSize(Constants.MINIWINDOW);
@@ -49,7 +49,6 @@ public class RegisterDialog extends JDialog {
             dispose();
         }
         userExists.setVisible(true);
-        System.out.println("User already exists.");
     }
 
     private void onCancel() {

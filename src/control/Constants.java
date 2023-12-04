@@ -33,6 +33,7 @@ public class Constants {
     public static final Color LIGHTCONTRASTCOLOR = new Color(255,221,210);
     public static final Color DARKCONTRASTCOLOR = new Color(226,149,120);
     public static final Color TINTEDGRAY = new Color(237,246,249);
+    public static final Border DIALOGBORDER = BorderFactory.createLineBorder(DARKCONTRASTCOLOR);
     //border set for all text inputs
     public static final Border INPUTBORDER = BorderFactory.createMatteBorder(0,0,1,0, Color.BLACK);
     public static final Dimension MINIWINDOW = new Dimension(200,150);

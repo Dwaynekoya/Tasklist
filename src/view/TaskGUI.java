@@ -45,6 +45,7 @@ public class TaskGUI extends JDialog {
         this.index=index;
         task= model.gettasklist().get(index);
         setContentPane(contentPane);
+        contentPane.setBorder(Constants.DIALOGBORDER);
         //default size would cut the hidden fields when shown unless we explicitly make the window bigger
         setMinimumSize(new Dimension(330,330));
         setResizable(false);

@@ -42,7 +42,7 @@ public class CreateNewTaskGUI extends JDialog {
 
     public CreateNewTaskGUI(TaskTableModel model) {
         setContentPane(contentPane);
-        //contentPane.setBorder(BorderFactory.createLineBorder(Constants.TINTEDGRAY));
+        contentPane.setBorder(Constants.DIALOGBORDER);
         //default size would cut the hidden fields when shown unless we explicitly make the window bigger
         setMinimumSize(new Dimension(330,330));
         setResizable(false);

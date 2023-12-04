@@ -28,7 +28,7 @@ public class ChangeDateDialog extends JDialog {
         setModal(true);
         setUndecorated(true);
         setLocationRelativeTo(null);
-        contentPane.setBorder(BorderFactory.createLineBorder(Constants.DARKCONTRASTCOLOR));
+        contentPane.setBorder(Constants.DIALOGBORDER);
         getRootPane().setDefaultButton(buttonOK);
         spinnerDateFormat();
         okCancelButtons();

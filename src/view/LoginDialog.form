@@ -157,17 +157,10 @@
           <text value=""/>
         </properties>
       </component>
-      <grid id="73559" class="view.components.CustomTitleBar" binding="titleBar" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <component id="73559" class="view.components.CustomTitleBar" binding="titleBar" custom-create="true">
         <constraints border-constraint="North"/>
         <properties/>
-        <border type="none"/>
-        <children>
-          <component id="ca9c4" class="view.components.CloseButton" binding="closeButton">
-            <constraints border-constraint="East"/>
-            <properties/>
-          </component>
-        </children>
-      </grid>
+      </component>
     </children>
   </grid>
 </form>
