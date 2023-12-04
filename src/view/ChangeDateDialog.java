@@ -6,7 +6,6 @@ import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,7 +18,7 @@ public class ChangeDateDialog extends JDialog {
     private JSpinner spinnerDate;
     private CustomTitleBar customTitleBar;
     private JButton closeButton;
-    private MainGUIWindowControl windowControl;
+    private final MainGUIWindowControl windowControl;
 
     public ChangeDateDialog(MainGUIWindowControl windowControl) {
         this.windowControl =windowControl;
@@ -55,23 +54,10 @@ public class ChangeDateDialog extends JDialog {
         dispose();
     }
     private void okCancelButtons() {
-        closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
+        closeButton.addActionListener(e -> onCancel());
+        buttonOK.addActionListener(e -> onOK());
 
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
+        buttonCancel.addActionListener(e -> onCancel());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -82,11 +68,7 @@ public class ChangeDateDialog extends JDialog {
         });
 
         // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
     private void createUIComponents() {
         customTitleBar=new CustomTitleBar(this);

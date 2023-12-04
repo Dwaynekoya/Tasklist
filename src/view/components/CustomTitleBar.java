@@ -11,7 +11,7 @@ import java.awt.event.MouseMotionListener;
 
 public class CustomTitleBar extends JMenuBar implements MouseListener, MouseMotionListener {
     private int xMouse, yMouse;
-    private JDialog dialog;
+    private final JDialog dialog;
     public CustomTitleBar(JDialog dialog) {
         super();
         this.dialog=dialog;

@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Arrays;
+
 
 public class User implements Serializable {
     private String username;
@@ -32,7 +32,6 @@ public class User implements Serializable {
     public boolean equals(Object obj) {
         if (obj instanceof User){
             String objName = ((User) obj).getUsername();
-            char[] objPassword = ((User) obj).getPassword();
             return this.username.equals(objName);
         }
         return false;

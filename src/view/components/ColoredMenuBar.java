@@ -9,7 +9,7 @@ import java.awt.event.MouseMotionListener;
 public class ColoredMenuBar extends JMenuBar implements MouseListener, MouseMotionListener {
     private Color bgColor = Color.WHITE;
     private int xMouse, yMouse;
-    private JFrame frame;
+    private final JFrame frame;
 
     public ColoredMenuBar(JFrame frame) {
         super();

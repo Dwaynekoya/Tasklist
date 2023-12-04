@@ -1,7 +1,6 @@
 package view;
 
 import control.Constants;
-import control.FileManagement;
 import control.TaskTableModel;
 import model.Habit;
 import model.Task;
@@ -10,13 +9,8 @@ import view.components.ColoredButton;
 import view.components.CustomTitleBar;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -38,7 +32,6 @@ public class CreateNewTaskGUI extends JDialog {
     private CloseButton closeButton;
     private TaskTableModel model;
     private DefaultComboBoxModel comboBoxModel;
-    private ArrayList<String> types;
 
     public CreateNewTaskGUI(TaskTableModel model) {
         setContentPane(contentPane);
@@ -78,29 +71,16 @@ public class CreateNewTaskGUI extends JDialog {
         comboBoxType.setModel(comboBoxModel);
     }
 
-    private void loadTypes() {
-        /*if (Constants.TYPESFILE.exists()){
-            types = (ArrayList<String>) FileManagement.loadFile(Constants.TYPESFILE);
-        } else {
-            types=new ArrayList<>();
-        }*/
-
-        //types.add(Constants.TEXTBUNDLE.getString("default"));
-    }
-
     //sets the togglebutton so its text changes on click and shows another input field
     private void toggleButtonHabit() {
-        toggleHabit.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (toggleHabit.isSelected()) {
-                    toggleHabit.setText(Constants.TEXTBUNDLE.getString("yes"));
-                    showRepeat(true);
-                }
-                else {
-                    toggleHabit.setText(Constants.TEXTBUNDLE.getString("no"));
-                    showRepeat(false);
-                }
+        toggleHabit.addChangeListener(e -> {
+            if (toggleHabit.isSelected()) {
+                toggleHabit.setText(Constants.TEXTBUNDLE.getString("yes"));
+                showRepeat(true);
+            }
+            else {
+                toggleHabit.setText(Constants.TEXTBUNDLE.getString("no"));
+                showRepeat(false);
             }
         });
     }
@@ -137,7 +117,7 @@ public class CreateNewTaskGUI extends JDialog {
     }
 
     private Task receiveInput() {
-        Task newTask = null;
+        Task newTask;
         String name = this.textFieldName.getText();
         String details = this.textAreaDetails.getText();
         int priority = this.sliderPriority.getValue();
@@ -168,23 +148,10 @@ public class CreateNewTaskGUI extends JDialog {
         dispose();
     }
     private void okCancelButtons() {
-        closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
+        closeButton.addActionListener(e -> onCancel());
+        buttonOK.addActionListener(e -> onOK());
 
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
+        buttonCancel.addActionListener(e -> onCancel());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -195,11 +162,7 @@ public class CreateNewTaskGUI extends JDialog {
         });
 
         // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         pack();
     }
 

@@ -7,8 +7,6 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import view.components.*;
 
@@ -22,7 +20,6 @@ public class MainGUIWindow extends JFrame  {
     private JMenuBar menuBar;
     private JMenu listMenu;
     private JMenuItem filterMenuItem;
-    private JMenuItem arrangeMenuItem;
     private JMenuItem changeDateMenuItem;
     private JMenu dateMenu;
     private JMenuItem todayMenuItem,yesterdayMenuItem,tomorrowMenuItem;
@@ -79,19 +76,12 @@ public class MainGUIWindow extends JFrame  {
 
     //GETTERS-> used in Control class
     public JMenuItem[] getMenuItems(){
-        JMenuItem[] items ={filterMenuItem,showAll1,todayMenuItem,yesterdayMenuItem,
+        return new JMenuItem[]{filterMenuItem,showAll1,todayMenuItem,yesterdayMenuItem,
         tomorrowMenuItem,changeDateMenuItem,showAll2};
-        return items;
     }
     public JButton getCloseButton() {
         return closeButton;
     }
-    //this uses a custom name to avoid overriding another method
-    public JMenuBar getMyMenuBar() {
-        return menuBar;
-    }
-
-
 
     public JButton getAddBttn() {
         return addBttn;
@@ -100,37 +90,17 @@ public class MainGUIWindow extends JFrame  {
     public JTable getTaskTable() {
         return taskTable;
     }
-    public JMenu getListMenu() {
-        return listMenu;
-    }
+
 
     public JMenuItem getFilterMenuItem() {
         return filterMenuItem;
     }
 
-    public JMenuItem getArrangeMenuItem() {
-        return arrangeMenuItem;
-    }
 
     public JMenuItem getChangeDateMenuItem() {
         return changeDateMenuItem;
     }
 
-    public JMenu getDateMenu() {
-        return dateMenu;
-    }
-
-    public JMenuItem getTodayMenuItem() {
-        return todayMenuItem;
-    }
-
-    public JMenuItem getYesterdayMenuItem() {
-        return yesterdayMenuItem;
-    }
-
-    public JMenuItem getTomorrowMenuItem() {
-        return tomorrowMenuItem;
-    }
 
     public JMenuItem getShowAll1() {
         return showAll1;

@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -18,19 +17,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MainGUIWindowControl implements ActionListener {
-    private MainGUIWindow window;
-    //buttons
-    private JButton addBttn;
+    private final MainGUIWindow window;
     private TaskTableModel model;
     private JTable taskTable;
     private TableRowSorter<TaskTableModel> sorter;
-    private JMenuBar menuBar;
-    private JButton closeButton;
 
     public MainGUIWindowControl(MainGUIWindow window) {
         this.window = window;
         findComponents();
         configTable();
+        closeWithEscape();
+    }
+
+    private void closeWithEscape() {
+       window.dispose();
     }
 
     private void configTable() {
@@ -40,6 +40,8 @@ public class MainGUIWindowControl implements ActionListener {
         model = new TaskTableModel(tasks);
         this.taskTable.setModel(model);
         defaultOrderTable();
+        //close the window when using escape key
+        //window.getContentPane().registerKeyboardAction(e -> closeWithEscape(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     public void changeFilter(String regex, int index){
@@ -50,7 +52,7 @@ public class MainGUIWindowControl implements ActionListener {
         sorter.setRowFilter(null);
     }
     private void defaultOrderTable() {
-        sorter=new TableRowSorter<TaskTableModel>(this.model);
+        sorter=new TableRowSorter<>(this.model);
         ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
         //DEFAULT: order by taskname
         sortKeys.add(new RowSorter.SortKey(0,SortOrder.ASCENDING));
@@ -63,14 +65,14 @@ public class MainGUIWindowControl implements ActionListener {
     private void findComponents() {
         //accesing elements through getters
         this.taskTable = window.getTaskTable();
-        this.addBttn = window.getAddBttn();
-        this.menuBar=window.getMyMenuBar();
+        //buttons
+        JButton addBttn = window.getAddBttn();
         configMenuListeners();
-        this.closeButton=window.getCloseButton();
+        JButton closeButton = window.getCloseButton();
         //setting action commands here
-        this.addBttn.setActionCommand("add");
-        this.addBttn.addActionListener(this);
-        this.closeButton.addActionListener(this);
+        addBttn.setActionCommand("add");
+        addBttn.addActionListener(this);
+        closeButton.addActionListener(this);
     }
 
     private void configMenuListeners() {

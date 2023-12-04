@@ -18,8 +18,6 @@ public class Constants {
     };
     //serializable file for tasks
     public static final File TASKFILE = new File("./tasks.ser");
-    //serializable file for task TYPES:
-    public static final File TYPESFILE = new File("./types.ser");
     //TASK TYPES
     public static final String[] TYPES = {TEXTBUNDLE.getString("default"),
             TEXTBUNDLE.getString("home"), TEXTBUNDLE.getString("work")};

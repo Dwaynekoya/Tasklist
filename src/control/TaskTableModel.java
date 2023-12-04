@@ -4,26 +4,15 @@ import model.Habit;
 import model.Task;
 import view.TaskGUI;
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 //table model for the tasklist
 
 public class TaskTableModel extends AbstractTableModel {
-    private ArrayList<Task> tasklist;
-    private String[] columns;
-    private JToggleButton btnDone;
-
-    public TaskTableModel() {
-        this.tasklist=new ArrayList<>();
-        columns =Constants.DEFAULLT_COLUMNS;
-        btnDone=new JToggleButton(Constants.TEXTBUNDLE.getString("no"));
-    }
-
-    public TaskTableModel(ArrayList<Task> Tasks) {
+    private final ArrayList<Task> tasklist;
+    private final String[] columns;
+        public TaskTableModel(ArrayList<Task> Tasks) {
         this.tasklist = Tasks;
         columns =Constants.DEFAULLT_COLUMNS;
     }
@@ -131,9 +120,7 @@ public class TaskTableModel extends AbstractTableModel {
     }
 
     private Task getTask(int rowIndex) {
-        Task task = null;
-        task=this.gettasklist().get(rowIndex);
-        return task;
+        return this.gettasklist().get(rowIndex);
     }
 
     public ArrayList<Task> gettasklist() {

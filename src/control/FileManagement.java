@@ -9,9 +9,8 @@ public class FileManagement {
     public static ArrayList loadFile(File file) {
         ArrayList list =null;
         if (file.exists()){
-            ObjectInputStream objectInputStream = null;
             try {
-                objectInputStream = new ObjectInputStream(new FileInputStream(file));
+                ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
                 list = (ArrayList) objectInputStream.readObject();
             } catch (IOException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
