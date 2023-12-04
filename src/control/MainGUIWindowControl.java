@@ -26,12 +26,8 @@ public class MainGUIWindowControl implements ActionListener {
         this.window = window;
         findComponents();
         configTable();
-        closeWithEscape();
     }
 
-    private void closeWithEscape() {
-       window.dispose();
-    }
 
     private void configTable() {
         //loading the tasklist and setting it in the model
@@ -40,8 +36,6 @@ public class MainGUIWindowControl implements ActionListener {
         model = new TaskTableModel(tasks);
         this.taskTable.setModel(model);
         defaultOrderTable();
-        //close the window when using escape key
-        //window.getContentPane().registerKeyboardAction(e -> closeWithEscape(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     public void changeFilter(String regex, int index){
